@@ -660,7 +660,7 @@ PlayerSettings:
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
   cloudProjectId: 7f313d53-0074-41bb-9c05-2b2da6a5d055
-  projectName: Portal (1)
+  projectName: PortalServer
   organizationId: devsatgst
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
