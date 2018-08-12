@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - LevelCamera
+  - IgnorePlayer1
+  - IgnorePlayer2
   layers:
   - Default
   - TransparentFX
@@ -15,9 +18,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - Player0
+  - Player1
+  - Player2
   - 
   - 
   - 
