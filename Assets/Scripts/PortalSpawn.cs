@@ -12,13 +12,9 @@ public class PortalSpawn : MonoBehaviour
     void Start()
     {
         bullet1 = Instantiate(bullet, transform.forward, Quaternion.identity);
-        //bullet2 = Instantiate (bullet,transform.right,Quaternion.identity);
-    }
+        bullet2 = Instantiate(bullet, transform.right, Quaternion.identity);
 
-    // Update is called once per frame
-    void Update()
-    {
-        bullet1.transform.position += -bullet1.transform.up * Time.deltaTime;
-        //bullet2.transform.position -= bullet2.transform.right*Time.deltaTime;
+        bullet1.GetComponent<BulletController>().forward = -bullet1.transform.up;
+        bullet2.GetComponent<BulletController>().forward = -bullet2.transform.right;
     }
 }
