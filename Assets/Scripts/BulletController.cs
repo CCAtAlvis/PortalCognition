@@ -7,12 +7,13 @@ public class BulletController : MonoBehaviour
     public GameObject portalPrefab;
     public Vector3 forward;
 
-    // Update is called once per frame
+    [SerializeField]
+    private Rigidbody rb;
+
     void Update()
     {
-        transform.position += forward * Time.deltaTime;
+        rb.AddForce(forward, ForceMode.Impulse);
     }
-
 
     void OnCollisionEnter(Collision other)
     {
@@ -20,7 +21,7 @@ public class BulletController : MonoBehaviour
         Vector3 contactNormal = other.contacts[0].normal;
 
         Quaternion portalRotation = Quaternion.LookRotation(contactNormal, Vector3.up);
-        GameObject spawnedPortal = Instantiate(portalPrefab, collisionPoint, portalRotation);
+        GameObject spawnedPortal = Instantiate(portalPrefab, collisionPoint - forward.normalized * 1.01f, portalRotation);
 
         Destroy(this.gameObject);
     }
