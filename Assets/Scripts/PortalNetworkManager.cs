@@ -65,7 +65,7 @@ public class PortalNetworkManager : NetworkManager
         //Debug.Log("player conn: " + conn);
 
         // base.OnServerAddPlayer(conn, playerControllerId);
-        GameObject player = Instantiate(playerPrefab, GetStartPosition(), true);
+        GameObject player = Instantiate(playerPrefab, GetStartPosition());
         player.GetComponent<PlayerSetup>().SetPlayerConnection(conn);
 
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);

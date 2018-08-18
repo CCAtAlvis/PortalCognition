@@ -2,18 +2,32 @@
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody player;
+    public GameObject playerMesh;
 
-    // Use this for initialization
-    void Start()
+    Rigidbody playerRb;
+    new Camera camera;
+
+    private void Start()
     {
-        player = GetComponent<Rigidbody>();
+        playerRb = GetComponent<Rigidbody>();
+        camera = GetComponentInChildren<Camera>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        Quaternion camRotation = camera.transform.rotation;
+        camRotation.x = 0;
+        camRotation.z = 0;
+
+        playerMesh.transform.rotation = camRotation;
+    }
+
+    private void FixedUpdate()
+    {
+        Vector3 camForward = camera.transform.forward;
+        camForward.y = 0;
+
         if (Input.GetKey(KeyCode.W))
-            player.AddForce(transform.forward);
+            playerRb.AddForce(camForward.normalized);
     }
 }

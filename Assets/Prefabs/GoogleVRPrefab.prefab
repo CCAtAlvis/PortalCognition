@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4357608692941454}
   m_Layer: 0
-  m_Name: GoogleVR
+  m_Name: GoogleVRPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
