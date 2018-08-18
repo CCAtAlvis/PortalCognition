@@ -339,13 +339,14 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4267937888688938}
+  - component: {fileID: 65824599822479848}
+  - component: {fileID: 54071535372953510}
   - component: {fileID: 114509186668812198}
   - component: {fileID: 114950766122436162}
-  - component: {fileID: 54071535372953510}
   - component: {fileID: 114575464223170462}
   - component: {fileID: 114266945730193260}
   - component: {fileID: 114400338953811446}
-  - component: {fileID: 65824599822479848}
+  - component: {fileID: 114197155943625494}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -863,6 +864,25 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114197155943625494
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1680593435336398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1267208747, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 4511308162378762}
+  m_ChildIndex: 0
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_MovementThreshold: 0.001
+  m_InterpolateRotation: 0.5
+  m_InterpolateMovement: 0.5
 --- !u!114 &114266945730193260
 MonoBehaviour:
   m_ObjectHideFlags: 1

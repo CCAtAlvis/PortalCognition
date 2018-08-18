@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class BulletController : MonoBehaviour
+public class PortalBulletController : MonoBehaviour
 {
     public GameObject portalPrefab;
     public Vector3 forward;
