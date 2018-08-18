@@ -19,6 +19,8 @@ public class PlayerSetup : NetworkBehaviour
             Camera.main.gameObject.SetActive(false);
             ChangeRendererRecursively(transform, false);
         }
+
+        //Destroy(this);
     }
 
     public void SetPlayerConnection(NetworkConnection _conn)

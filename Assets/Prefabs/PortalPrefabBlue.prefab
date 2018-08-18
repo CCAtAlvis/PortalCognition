@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4702679914256278}
-  - component: {fileID: 114179572565498708}
+  - component: {fileID: 114907025296782656}
   m_Layer: 0
   m_Name: PortalPrefabBlue
   m_TagString: Untagged
@@ -175,7 +175,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1286252271213220}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114179572565498708
+--- !u!114 &114907025296782656
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -183,9 +183,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1996913545714876}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7df213fd49015ee45b9a479cab8a97a4, type: 3}
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 230
+    i1: 181
+    i2: 35
+    i3: 41
+    i4: 189
+    i5: 2
+    i6: 20
+    i7: 84
+    i8: 248
+    i9: 239
+    i10: 21
+    i11: 216
+    i12: 25
+    i13: 137
+    i14: 85
+    i15: 226
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!136 &136591282322458442
 CapsuleCollider:
   m_ObjectHideFlags: 1

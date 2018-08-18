@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
@@ -10,7 +8,7 @@ public class BulletController : MonoBehaviour
     [SerializeField]
     private Rigidbody rb;
 
-    void Update()
+    void FixedUpdate()
     {
         rb.AddForce(forward, ForceMode.Impulse);
     }
