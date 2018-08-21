@@ -14,7 +14,6 @@ public class TurretController : NetworkBehaviour
     private float fireCountdown = 0f;
     private string playerTag = "Player";
 
-
     private void Start()
     {
         if (!isServer)
@@ -38,11 +37,28 @@ public class TurretController : NetworkBehaviour
 
         if (fireCountdown <= 0f)
         {
-            Shoot();
+            if (CheckRayhit())
+                Shoot();
+
             fireCountdown = 1f / fireRate;
         }
 
         fireCountdown -= Time.deltaTime;
+    }
+
+    private bool CheckRayhit()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, target.position, out hit, range))
+        {
+            string goTag = hit.transform.gameObject.tag;
+            //Debug.Log(goTag);
+
+            if ("Player" == goTag)
+                return true;
+        }
+
+        return false;
     }
 
     private void UpdateTarget()
@@ -74,7 +90,7 @@ public class TurretController : NetworkBehaviour
     private void Shoot()
     {
         GameObject bulletGO = Instantiate(bulletPrefab, firePoint.transform);
-
+        bulletGO.transform.parent = null;
         EnemyBulletController bulletController = bulletGO.GetComponent<EnemyBulletController>();
         Vector3 direction = target.position - transform.position;
         direction.y = 0;

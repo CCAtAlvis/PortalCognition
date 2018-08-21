@@ -5,21 +5,30 @@ public class EnemyBulletController : MonoBehaviour
     //private Transform playerTarget;
     public Vector3 forward;
     public Rigidbody rg;
+    public float ttl = 2f;
 
-    void Start()
+    private void Start()
     {
         rg = GetComponent<Rigidbody>();
-        //    playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
-        //    targetVector = playerTarget.position - transform.position;
+    }
+
+    private void Update()
+    {
+        ttl -= Time.deltaTime;
+        if (ttl < 0)
+            Destroy(this.gameObject);
     }
 
     private void FixedUpdate()
     {
-        rg.AddForce(forward*2, ForceMode.Impulse);
+        rg.AddForce(forward, ForceMode.VelocityChange);
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if ("Player" == other.tag)
+            Debug.Log("collision");
+
         Destroy(this.gameObject);
     }
 }
