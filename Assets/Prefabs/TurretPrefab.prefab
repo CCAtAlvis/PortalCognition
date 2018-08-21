@@ -345,9 +345,9 @@ MonoBehaviour:
   m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TransformSyncMode: 0
+  m_TransformSyncMode: 1
   m_SendInterval: 0.1
-  m_SyncRotationAxis: 2
+  m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
   m_MovementTheshold: 0.001
@@ -366,10 +366,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207a1e9c86d1b6d4c8aab94edaeb8dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PGM: {fileID: 0}
   range: 10
-  PartToRotate: {fileID: 4605931258940420}
   turnSpeed: 10
   fireRate: 1
+  PartToRotate: {fileID: 4605931258940420}
   bulletPrefab: {fileID: 1931048709134840, guid: bab837b8c5f58a9449db9b89e073826f,
     type: 2}
   firePoint: {fileID: 4998881316632048}

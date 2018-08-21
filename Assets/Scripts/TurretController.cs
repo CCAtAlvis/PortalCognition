@@ -3,10 +3,16 @@ using UnityEngine.Networking;
 
 public class TurretController : NetworkBehaviour
 {
+    [Header("GameManager")]
+    public PortalGameManager PGM;
+
+    [Header("Fire Properties")]
     public float range = 5f;
-    public Transform PartToRotate;
     public float turnSpeed = 10f;
     public float fireRate = 1f;
+
+    [Space(20)]
+    public Transform PartToRotate;
     public GameObject bulletPrefab;
     public Transform firePoint;
 
@@ -95,6 +101,7 @@ public class TurretController : NetworkBehaviour
         Vector3 direction = target.position - transform.position;
         direction.y = 0;
         bulletController.forward = direction.normalized;
+        bulletController.PGM = PGM;
 
         NetworkServer.Spawn(bulletGO);
     }

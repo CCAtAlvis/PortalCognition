@@ -13,9 +13,6 @@ public class PortalNetworkManager : NetworkManager
     public GameObject stopGameButton;
     public GameObject restartGameButton;
 
-    private float actualTimer;
-    private float inGameTimer;
-
     public override void OnStartServer()
     {
         //Debug.Log("Server Started.");
