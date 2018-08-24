@@ -4,6 +4,7 @@ public class EnemyBulletController : MonoBehaviour
 {
     //private Transform playerTarget;
     public Vector3 forward;
+	public int speedMultiplier = 6;
     public Rigidbody rg;
     public float ttl = 2f;
 
@@ -11,7 +12,8 @@ public class EnemyBulletController : MonoBehaviour
 
     private void Start()
     {
-        rg = GetComponent<Rigidbody>();
+		Debug.Log (forward);
+		rg.velocity = forward * speedMultiplier;
     }
 
     private void Update()
@@ -21,10 +23,10 @@ public class EnemyBulletController : MonoBehaviour
             Destroy(this.gameObject);
     }
 
-    private void FixedUpdate()
-    {
-        rg.AddForce(forward, ForceMode.VelocityChange);
-    }
+//    private void FixedUpdate()
+//    {
+//        rg.AddForce(forward, ForceMode.VelocityChange);
+//    }
 
     private void OnTriggerEnter(Collider other)
     {

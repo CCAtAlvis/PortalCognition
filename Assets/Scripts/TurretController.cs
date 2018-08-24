@@ -22,17 +22,11 @@ public class TurretController : NetworkBehaviour
 
     private void Start()
     {
-        if (!isServer)
-            return;
-
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
     private void Update()
     {
-        if (!isServer)
-            return;
-
         if (target == null)
             return;
 
@@ -43,7 +37,7 @@ public class TurretController : NetworkBehaviour
 
         if (fireCountdown <= 0f)
         {
-            if (CheckRayhit())
+			if (CheckRayhit())
                 Shoot();
 
             fireCountdown = 1f / fireRate;
@@ -54,6 +48,9 @@ public class TurretController : NetworkBehaviour
 
     private bool CheckRayhit()
     {
+		if (!isServer)
+			return false;
+
         RaycastHit hit;
         if (Physics.Raycast(transform.position, target.position, out hit, range))
         {
@@ -96,15 +93,27 @@ public class TurretController : NetworkBehaviour
     private void Shoot()
     {
         GameObject bulletGO = Instantiate(bulletPrefab, firePoint.transform);
-        bulletGO.transform.parent = null;
+//        bulletGO.transform.parent = null;
         EnemyBulletController bulletController = bulletGO.GetComponent<EnemyBulletController>();
         Vector3 direction = target.position - transform.position;
         direction.y = 0;
         bulletController.forward = direction.normalized;
         bulletController.PGM = PGM;
-
         NetworkServer.Spawn(bulletGO);
+//		Debug.LogError ("message from server: direction: " + direction);
+//		Debug.LogError ("message from server: forward: " + bulletController.forward);
+		RpcSetBullet (bulletGO, direction);
     }
+
+	[ClientRpc]
+	void RpcSetBullet(GameObject _bulletGO, Vector3 _direction)
+	{
+		EnemyBulletController bulletController = _bulletGO.GetComponent<EnemyBulletController>();
+		bulletController.forward = _direction.normalized;
+		bulletController.PGM = PGM;
+//		Debug.LogError ("message from client: direction: " + _direction);
+//		Debug.LogError ("message from client: forward: " + bulletController.forward);
+	}
 
     void OnDrawGizmosSelected()
     {

@@ -4,14 +4,20 @@ public class PortalBulletController : MonoBehaviour
 {
     public GameObject portalPrefab;
     public Vector3 forward;
+	public int speedMultiplier = 6;
 
     [SerializeField]
     private Rigidbody rb;
 
-    void FixedUpdate()
-    {
-        rb.AddForce(forward, ForceMode.Impulse);
-    }
+	private void Start()
+	{
+		rb.velocity = forward * speedMultiplier;
+	}
+
+//    void FixedUpdate()
+//    {
+//        rb.AddForce(forward, ForceMode.Impulse);
+//    }
 
     void OnCollisionEnter(Collision other)
     {
