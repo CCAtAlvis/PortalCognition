@@ -8,6 +8,7 @@ TagManager:
   - EnemyBullet
   - Box
   - Potal
+  - Ground
   layers:
   - Default
   - TransparentFX

@@ -93,7 +93,7 @@ public class TurretController : NetworkBehaviour
     private void Shoot()
     {
         GameObject bulletGO = Instantiate(bulletPrefab, firePoint.transform);
-//        bulletGO.transform.parent = null;
+        bulletGO.transform.parent = null;
         EnemyBulletController bulletController = bulletGO.GetComponent<EnemyBulletController>();
         Vector3 direction = target.position - transform.position;
         direction.y = 0;
