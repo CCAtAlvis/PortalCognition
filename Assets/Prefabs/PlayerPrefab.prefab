@@ -26,6 +26,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1077230029566244
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4691043003056296}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1120284773825866
 GameObject:
   m_ObjectHideFlags: 1
@@ -478,7 +493,7 @@ Transform:
   m_GameObject: {fileID: 1680593435336398}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 4511308162378762}
   - {fileID: 4291427550223622}
@@ -579,6 +594,7 @@ Transform:
   m_Children:
   - {fileID: 4824144055068880}
   - {fileID: 4883093009766310}
+  - {fileID: 4691043003056296}
   m_Father: {fileID: 4267937888688938}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -650,6 +666,19 @@ Transform:
   - {fileID: 4654628920976752}
   m_Father: {fileID: 4978340149351400}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4691043003056296
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1077230029566244}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 10, z: 5.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4511308162378762}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4741224270737494
 Transform:
@@ -927,7 +956,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thingsToDisable:
-  - {fileID: 114950766122436162}
   - {fileID: 20770539429564728}
   - {fileID: 81809875688847804}
 --- !u!114 &114575464223170462
@@ -974,8 +1002,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMesh: {fileID: 1307317202988442}
-  forceMultiplier: 3
+  spawnPoint: {fileID: 4691043003056296}
+  speedMultipler: 3
   jumpMultiplier: 4
+  gravityGunRange: 10
+  playerRb: {fileID: 54071535372953510}
+  camera: {fileID: 20770539429564728}
 --- !u!124 &124572601670039562
 Behaviour:
   m_ObjectHideFlags: 1
