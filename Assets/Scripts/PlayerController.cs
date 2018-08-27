@@ -10,14 +10,23 @@ public class PlayerController : NetworkBehaviour
     public float gravityGunRange = 10;
     public Rigidbody playerRb;
     public new Camera camera;
+	public GameObject bulletPrefab;
 
     private bool isPlayerGrounded = false;
     private bool isHoldingBox = false;
     private GameObject boxGO;
     private Rigidbody boxRb;
+	private int playerID;
+	private GameObject bullet;
+	private PortalBulletController pbc;
+	private Rigidbody bulletRb;
 
     private void Start()
     {
+		bullet = Instantiate (bulletPrefab);
+		bullet.SetActive (false);
+		bulletRb = bullet.GetComponent<Rigidbody> ();
+		pbc = bullet.GetComponent<PortalBulletController> ();
         //playerRb = GetComponent<Rigidbody>();
         //camera = GetComponentInChildren<Camera>();
     }
@@ -33,7 +42,7 @@ public class PlayerController : NetworkBehaviour
 
         playerMesh.transform.rotation = camRotation;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             //Debug.Log("fire in the hole");
             if (isHoldingBox)
@@ -45,6 +54,19 @@ public class PlayerController : NetworkBehaviour
                 CmdGravityGun();
             }
         }
+
+		if (Input.GetMouseButtonDown (0)) 
+		{
+			if (!isHoldingBox) {
+				
+				bullet.SetActive (false);
+				bulletRb.isKinematic = true;
+				bullet.transform.position = spawnPoint.position;
+				pbc.forward = camera.transform.forward;
+				bulletRb.isKinematic = true;
+				bullet.SetActive (true);
+			}
+		}
     }
 
     [Command]
@@ -160,4 +182,9 @@ public class PlayerController : NetworkBehaviour
         if ("Ground" == tag || "Box" == tag)
             SetPlayerGrounded(false);
     }
+
+	public void SetPlayerID(int _ID)
+	{
+		playerID = _ID;
+	}
 }

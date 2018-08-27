@@ -3,6 +3,7 @@
 public class EnemyBulletController : MonoBehaviour
 {
     //private Transform playerTarget;
+	private int playerID;
     public Vector3 forward;
 	public int speedMultiplier = 6;
     public Rigidbody rg;
