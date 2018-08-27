@@ -1010,6 +1010,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player:
     spawnPoint: {fileID: 4691043003056296}
+    sp: {fileID: 1077230029566244}
     gravityGunRange: 10
     camera: {fileID: 20770539429564728}
   bulletPrefab: {fileID: 1375354132611630, guid: 5228036dedbd2854c8eb70f37a96a127,

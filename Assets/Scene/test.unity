@@ -353,16 +353,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114258284776674564, guid: 537f99d947d244e47a9093465431c584,
-        type: 2}
-      propertyPath: m_LocalPlayerAuthority
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114382326605167996, guid: 537f99d947d244e47a9093465431c584,
-        type: 2}
-      propertyPath: m_TransformSyncMode
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 537f99d947d244e47a9093465431c584, type: 2}
   m_IsPrefabParent: 0
