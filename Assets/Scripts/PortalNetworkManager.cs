@@ -64,7 +64,7 @@ public class PortalNetworkManager : NetworkManager
         // base.OnServerAddPlayer(conn, playerControllerId);
         GameObject player = Instantiate(playerPrefab, GetStartPosition());
         //player.GetComponent<PlayerSetup>().SetPlayerConnection(conn);
-		player.GetComponent<PlayerController> ().SetPlayerID (noOfPlayer);
+		player.GetComponent<PlayerGunController> ().SetPlayerID (noOfPlayer);
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
         NetworkServer.Spawn(player);
     }

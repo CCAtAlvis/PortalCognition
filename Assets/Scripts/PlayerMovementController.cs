@@ -1,105 +1,107 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 
-[System.Serializable]
-public class Multiplier {
-	public float speed = 3;
-	public float jump = 4;
-}
-
-[System.Serializable]
-public class Player {
-	public GameObject mesh;
-	public Rigidbody rigidbody;
-	public new Camera camera;
-}
-
 public class PlayerMovementController : NetworkBehaviour
 {
-	public Multiplier mul;
-	public Player player;
+    [System.Serializable]
+    public class Multiplier
+    {
+        public float speed = 3;
+        public float jump = 4;
+    }
 
-	private bool isPlayerGrounded = false;
+    [System.Serializable]
+    public class Player
+    {
+        public GameObject mesh;
+        public Rigidbody rigidbody;
+        public Camera camera;
+    }
 
-	private void Update()
-	{
-		if (!isLocalPlayer)
-			return;
+    public Multiplier mul;
+    public Player player;
 
-		Quaternion camRotation = player.camera.transform.rotation;
-		camRotation.x = 0;
-		camRotation.z = 0;
+    private bool isPlayerGrounded = false;
 
-		player.mesh.transform.rotation = camRotation;
-	}
+    private void Update()
+    {
+        if (!isLocalPlayer)
+            return;
 
-	private void FixedUpdate()
-	{
-		if (!isLocalPlayer)
-			return;
+        Quaternion camRotation = player.camera.transform.rotation;
+        camRotation.x = 0;
+        camRotation.z = 0;
 
-		Vector3 camForward = player.camera.transform.forward;
-		camForward.y = 0;
+        player.mesh.transform.rotation = camRotation;
+    }
 
-		//Handle ~all~ movement game input after this
-		if (!isPlayerGrounded)
-			return;
+    private void FixedUpdate()
+    {
+        if (!isLocalPlayer)
+            return;
 
-		float temp = player.rigidbody.velocity.y;
-		Vector3 velocity = Vector3.zero;
+        Vector3 camForward = player.camera.transform.forward;
+        camForward.y = 0;
 
-		if (Input.GetKey(KeyCode.W))
-		{
-			//playerRb.AddForce(camForward.normalized * forceMultiplier);
-			//playerRb.AddForce(playerMesh.transform.forward * forceMultiplier);
-			velocity = player.mesh.transform.forward * mul.speed;
-		}
+        //Handle ~all~ movement game input after this
+        if (!isPlayerGrounded)
+            return;
 
-		if (Input.GetKey(KeyCode.S))
-			velocity = -player.mesh.transform.forward * mul.speed;
+        float temp = player.rigidbody.velocity.y;
+        Vector3 velocity = Vector3.zero;
 
-		player.rigidbody.velocity = new Vector3(velocity.x, temp, velocity.z);
+        if (Input.GetKey(KeyCode.W))
+        {
+            //playerRb.AddForce(camForward.normalized * forceMultiplier);
+            //playerRb.AddForce(playerMesh.transform.forward * forceMultiplier);
+            velocity = player.mesh.transform.forward * mul.speed;
+        }
 
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			player.rigidbody.velocity += Vector3.up * mul.jump;
-		}
-	}
+        if (Input.GetKey(KeyCode.S))
+            velocity = -player.mesh.transform.forward * mul.speed;
 
-	private void SetPlayerGrounded(bool _set)
-	{
-		isPlayerGrounded = _set;
+        player.rigidbody.velocity = new Vector3(velocity.x, temp, velocity.z);
 
-		if (_set)
-		{
-			player.rigidbody.drag = 5;
-			player.rigidbody.useGravity = false;
-		}
-		else
-		{
-			player.rigidbody.drag = 0.001f;
-			player.rigidbody.useGravity = true;
-		}
-	}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            player.rigidbody.velocity += Vector3.up * mul.jump;
+        }
+    }
 
-	private void OnCollisionEnter(Collision collision)
-	{
-		string tag = collision.collider.gameObject.tag;
-		if("Ground" == tag || "Box" == tag)
-			SetPlayerGrounded(true);
-	}
+    private void SetPlayerGrounded(bool _set)
+    {
+        isPlayerGrounded = _set;
 
-	private void OnCollisionStay(Collision collision)
-	{
-		string tag = collision.collider.gameObject.tag;
-		if ("Ground" == tag || "Box" == tag)
-			SetPlayerGrounded(true);
-	}
+        if (_set)
+        {
+            player.rigidbody.drag = 5;
+            player.rigidbody.useGravity = false;
+        }
+        else
+        {
+            player.rigidbody.drag = 0.001f;
+            player.rigidbody.useGravity = true;
+        }
+    }
 
-	private void OnCollisionExit(Collision collision)
-	{
-		string tag = collision.collider.gameObject.tag;
-		if ("Ground" == tag || "Box" == tag)
-			SetPlayerGrounded(false);
-	}
+    private void OnCollisionEnter(Collision collision)
+    {
+        string tag = collision.collider.gameObject.tag;
+        if ("Ground" == tag || "Box" == tag)
+            SetPlayerGrounded(true);
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        string tag = collision.collider.gameObject.tag;
+        if ("Ground" == tag || "Box" == tag)
+            SetPlayerGrounded(true);
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        string tag = collision.collider.gameObject.tag;
+        if ("Ground" == tag || "Box" == tag)
+            SetPlayerGrounded(false);
+    }
 }

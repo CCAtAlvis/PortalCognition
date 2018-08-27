@@ -357,12 +357,11 @@ GameObject:
   - component: {fileID: 65824599822479848}
   - component: {fileID: 54071535372953510}
   - component: {fileID: 114509186668812198}
-  - component: {fileID: 114950766122436162}
   - component: {fileID: 114044428990610392}
+  - component: {fileID: 114606549250092370}
   - component: {fileID: 114575464223170462}
   - component: {fileID: 114266945730193260}
   - component: {fileID: 114197155943625494}
-  - component: {fileID: 114606549250092370}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -1009,25 +1008,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d8d5192d2f4064b98592538727fb17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114950766122436162
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1680593435336398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da43704a359b25749b88a644c35e9143, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMesh: {fileID: 1307317202988442}
-  spawnPoint: {fileID: 4691043003056296}
-  speedMultipler: 3
-  jumpMultiplier: 4
-  gravityGunRange: 10
-  playerRb: {fileID: 54071535372953510}
-  camera: {fileID: 20770539429564728}
-  bulletPrefab: {fileID: 0}
+  player:
+    spawnPoint: {fileID: 4691043003056296}
+    gravityGunRange: 10
+    camera: {fileID: 20770539429564728}
+  bulletPrefab: {fileID: 1375354132611630, guid: 5228036dedbd2854c8eb70f37a96a127,
+    type: 2}
 --- !u!124 &124572601670039562
 Behaviour:
   m_ObjectHideFlags: 1
