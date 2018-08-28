@@ -23,10 +23,17 @@ public class PlayerMovementController : NetworkBehaviour
 
     private bool isPlayerGrounded = false;
 
-	private Vector3 initialPosition;
+	public struct Init
+	{
+		public Vector3 position;
+		public Transform parent;
+		
+	};
+	private Init init;
 
 	private void Start() {
-		initialPosition = transform.position;
+		init.position = transform.position;
+		init.parent = transform.parent;
 	}
 
     private void Update()
@@ -71,6 +78,8 @@ public class PlayerMovementController : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             player.rigidbody.velocity += Vector3.up * mul.jump;
+			transform.parent = null;
+			Debug.Log ("jumping with parent: " + transform.parent);
         }
     }
 
@@ -112,6 +121,7 @@ public class PlayerMovementController : NetworkBehaviour
     }
 
 	public void Destroy() {
-		transform.position = initialPosition;
+		transform.position = init.position;
+		transform.parent = init.parent;
 	}
 }
