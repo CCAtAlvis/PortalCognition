@@ -23,6 +23,12 @@ public class PlayerMovementController : NetworkBehaviour
 
     private bool isPlayerGrounded = false;
 
+	private Vector3 initialPosition;
+
+	private void Start() {
+		initialPosition = transform.position;
+	}
+
     private void Update()
     {
         if (!isLocalPlayer)
@@ -104,4 +110,8 @@ public class PlayerMovementController : NetworkBehaviour
         if ("Ground" == tag || "Box" == tag)
             SetPlayerGrounded(false);
     }
+
+	public void Destroy() {
+		transform.position = initialPosition;
+	}
 }

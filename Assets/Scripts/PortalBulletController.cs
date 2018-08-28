@@ -41,4 +41,7 @@ public class PortalBulletController : MonoBehaviour
         //do the same in the manager script for Portal 
         this.gameObject.SetActive(false);
     }
+
+	public void Destroy(){
+	}
 }

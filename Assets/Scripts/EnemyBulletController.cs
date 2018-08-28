@@ -39,4 +39,7 @@ public class EnemyBulletController : MonoBehaviour
 
         Destroy(this.gameObject);
     }
+
+	public void Destroy(){
+	}
 }
