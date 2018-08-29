@@ -45,7 +45,7 @@ public class PortalGameManager : NetworkBehaviour
     /// <summary>
     /// stop the game!
     /// </summary>
-    private void StopGame()
+    public void StopGame()
     {
         Time.timeScale = 0;
     }

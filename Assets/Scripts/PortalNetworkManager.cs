@@ -9,8 +9,9 @@ public class PortalNetworkManager : NetworkManager
     public GameObject startGameButton;
     public GameObject stopGameButton;
     public GameObject restartGameButton;
+    public PortalGameManager PGM;
 
-	private string ipAddress = "192.168.0.204";
+	private string ipAddress = "192.168.1.104";
 	private int port = 7777;
 
 	private bool _isClientConnected = false;
@@ -54,7 +55,7 @@ public class PortalNetworkManager : NetworkManager
         NetworkServer.Spawn(player);
     }
 
-	public void OnStopServer()
+	public override void OnStopServer()
 	{
 		#if UNITY_ANDROID
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -63,8 +64,9 @@ public class PortalNetworkManager : NetworkManager
 
 	public void PortalStartGameServer()
 	{
-		Debug.Log("Starting Server...");
+		//Debug.Log("Starting Server...");
 		StartServer();
+        Time.timeScale = 1;
 		startGameButton.SetActive(false);
 		stopGameButton.SetActive(true);
 		restartGameButton.SetActive(true);
@@ -80,6 +82,7 @@ public class PortalNetworkManager : NetworkManager
 	{
 		//Debug.Log("Stoping game server...");
 		StopServer ();
+        PGM.StopGame();
 		//startGameButton.SetActive(true);
 		//stopGameButton.SetActive(false);
 		//restartGameButton.SetActive(false);
