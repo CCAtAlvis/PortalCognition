@@ -16,14 +16,6 @@ public class PortalGameManager : NetworkBehaviour
     private float displayTimer; /*Time shown to event heads*/
     private int timer;
 
-    private void Start()
-    {
-        if (!isServer)
-            return;
-
-        display.SetActive(true);
-    }
-
     private void Update()
     {
         if (!isServer)

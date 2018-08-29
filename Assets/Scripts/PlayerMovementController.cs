@@ -27,7 +27,6 @@ public class PlayerMovementController : NetworkBehaviour
 	{
 		public Vector3 position;
 		public Transform parent;
-		
 	};
 	private Init init;
 
