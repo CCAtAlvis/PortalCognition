@@ -4,6 +4,7 @@ using UnityEngine.Networking;
 public class PortalController : NetworkBehaviour
 {
 
-	public void Destroy() {
-	}
+    public void Destroy()
+    {
+    }
 }

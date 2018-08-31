@@ -9,24 +9,25 @@ public class PortalNetworkManager : NetworkManager
     public GameObject startGameButton;
     public GameObject stopGameButton;
     public GameObject restartGameButton;
+    public PortalGameManager PGM;
 
-	private string ipAddress = "192.168.0.204";
-	private int port = 7777;
+    private string ipAddress = "192.168.1.104";
+    private int port = 7777;
 
-	private bool _isClientConnected = false;
-	private static int noOfPlayer = 0;
-	private NetworkConnection[] connections = new NetworkConnection[2];
+    private bool _isClientConnected = false;
+    private static int noOfPlayer = 0;
+    private NetworkConnection[] connections = new NetworkConnection[2];
 
-	private void Update()
-	{
-		#if UNITY_ANDROID
+    private void Update()
+    {
+#if UNITY_ANDROID
 		if (!_isClientConnected && Input.GetKeyDown (KeyCode.Z))
 		{
 			PortalStartGameClient ();
 			_isClientConnected = true;
 		}
-		#endif
-	}
+#endif
+    }
 
     public override void OnStartServer()
     {
@@ -49,47 +50,49 @@ public class PortalNetworkManager : NetworkManager
         // base.OnServerAddPlayer(conn, playerControllerId);
         GameObject player = Instantiate(playerPrefab, GetStartPosition());
         //player.GetComponent<PlayerSetup>().SetPlayerConnection(conn);
-		player.GetComponent<PlayerGunController> ().SetPlayerID (noOfPlayer);
+        player.GetComponent<PlayerGunController>().SetPlayerID(noOfPlayer);
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
         NetworkServer.Spawn(player);
     }
 
-	public void OnStopServer()
-	{
-		#if UNITY_ANDROID
+    public override void OnStopServer()
+    {
+#if UNITY_ANDROID
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-		#endif
-	}
+#endif
+    }
 
-	public void PortalStartGameServer()
-	{
-		Debug.Log("Starting Server...");
-		StartServer();
-		startGameButton.SetActive(false);
-		stopGameButton.SetActive(true);
-		restartGameButton.SetActive(true);
-	}
+    public void PortalStartGameServer()
+    {
+        //Debug.Log("Starting Server...");
+        StartServer();
+        Time.timeScale = 1;
+        startGameButton.SetActive(false);
+        stopGameButton.SetActive(true);
+        restartGameButton.SetActive(true);
+    }
 
-	public void PortalRestartGameServer()
-	{
-		//Debug.Log("Initiating restart sequence...");
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-	}
+    public void PortalRestartGameServer()
+    {
+        //Debug.Log("Initiating restart sequence...");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
-	public void PortalStopGameServer()
-	{
-		//Debug.Log("Stoping game server...");
-		StopServer ();
-		//startGameButton.SetActive(true);
-		//stopGameButton.SetActive(false);
-		//restartGameButton.SetActive(false);
-	}
+    public void PortalStopGameServer()
+    {
+        //Debug.Log("Stoping game server...");
+        StopServer();
+        PGM.StopGame();
+        //startGameButton.SetActive(true);
+        //stopGameButton.SetActive(false);
+        //restartGameButton.SetActive(false);
+    }
 
-	public void PortalStartGameClient()
-	{
-		Debug.Log("Starting Client...");
-		networkAddress = ipAddress;
-		networkPort = port;
-		StartClient();
-	}
+    public void PortalStartGameClient()
+    {
+        Debug.Log("Starting Client...");
+        networkAddress = ipAddress;
+        networkPort = port;
+        StartClient();
+    }
 }

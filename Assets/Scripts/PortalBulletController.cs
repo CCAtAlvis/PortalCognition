@@ -5,16 +5,11 @@ public class PortalBulletController : MonoBehaviour
     public GameObject otherPortal;
     public GameObject portalPrefab;
     public Vector3 forward;
-	public int speedMultiplier = 6;
+    public int speedMultiplier = 6;
 
     [SerializeField]
     private Rigidbody rb;
 
-    /*public void type(GameObject go)
-    {
-        Debug.Log("type set in pbc");
-        portalPrefab = go;
-    }*/
 	private void Start()
 	{
 		rb.velocity = forward * speedMultiplier;
@@ -25,10 +20,10 @@ public class PortalBulletController : MonoBehaviour
         rb.velocity = forward * speedMultiplier;
     }
 
-    //    void FixedUpdate()
-    //    {
-    //        rb.AddForce(forward, ForceMode.Impulse);
-    //    }
+    //void FixedUpdate()
+    //{
+    //    rb.AddForce(forward, ForceMode.Impulse);
+    //}
 
     void OnCollisionEnter(Collision other)
     {
@@ -52,6 +47,7 @@ public class PortalBulletController : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-	public void Destroy(){
-	}
+    public void Destroy()
+    {
+    }
 }

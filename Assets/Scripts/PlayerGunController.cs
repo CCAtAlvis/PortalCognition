@@ -77,7 +77,7 @@ public class PlayerGunController : NetworkBehaviour
             }
         }
 
-        if(box.obj != null)
+        if (box.obj != null)
         {
             box.obj.transform.position = player.spawnPoint.position + player.spawnPoint.forward * 0.2f - Vector3.up * 0.3f;
             //box.obj.transform.rotation = Quaternion.identity;
