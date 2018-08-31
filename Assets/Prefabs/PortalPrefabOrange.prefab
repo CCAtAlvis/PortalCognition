@@ -71,7 +71,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4702679914256278}
-  - component: {fileID: 114882856115267374}
+  - component: {fileID: 114325245157023514}
+  - component: {fileID: 135218902991590588}
   m_Layer: 0
   m_Name: PortalPrefabOrange
   m_TagString: Potal
@@ -124,8 +125,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1996913545714876}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -4.45, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: -0, w: -0}
+  m_LocalPosition: {x: 2.2777498, y: 0.49999908, z: 0.022417545}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4637822126120832}
@@ -175,7 +176,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1286252271213220}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114882856115267374
+--- !u!114 &114325245157023514
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -183,30 +184,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1996913545714876}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Script: {fileID: 11500000, guid: a68092ff01098584f9a22f95bef5c5fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 67
-    i1: 181
-    i2: 24
-    i3: 119
-    i4: 220
-    i5: 55
-    i6: 196
-    i7: 148
-    i8: 139
-    i9: 2
-    i10: 170
-    i11: 47
-    i12: 255
-    i13: 166
-    i14: 23
-    i15: 55
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  incomingPlayer: {fileID: 0}
+  otherPortal: {fileID: 1996913545714876, guid: e6b52329bd021454f8ef15d8198955e2,
+    type: 2}
+--- !u!135 &135218902991590588
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1996913545714876}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.57
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136591282322458442
 CapsuleCollider:
   m_ObjectHideFlags: 1

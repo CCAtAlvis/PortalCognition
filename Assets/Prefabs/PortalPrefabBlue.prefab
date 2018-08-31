@@ -71,7 +71,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4702679914256278}
-  - component: {fileID: 114907025296782656}
+  - component: {fileID: 114852470596251088}
+  - component: {fileID: 135784921409318522}
   m_Layer: 0
   m_Name: PortalPrefabBlue
   m_TagString: Potal
@@ -124,8 +125,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1996913545714876}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 6.22, y: 0, z: 0}
+  m_LocalRotation: {x: 0.0009767617, y: 0.9814867, z: 0.1914624, w: -0.005007138}
+  m_LocalPosition: {x: 10.45, y: 5.1, z: 9.823237}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4637822126120832}
@@ -175,7 +176,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1286252271213220}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114907025296782656
+--- !u!114 &114852470596251088
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -183,30 +184,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1996913545714876}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Script: {fileID: 11500000, guid: a68092ff01098584f9a22f95bef5c5fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 230
-    i1: 181
-    i2: 35
-    i3: 41
-    i4: 189
-    i5: 2
-    i6: 20
-    i7: 84
-    i8: 248
-    i9: 239
-    i10: 21
-    i11: 216
-    i12: 25
-    i13: 137
-    i14: 85
-    i15: 226
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  incomingPlayer: {fileID: 0}
+  otherPortal: {fileID: 0}
+--- !u!135 &135784921409318522
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1996913545714876}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.63
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136591282322458442
 CapsuleCollider:
   m_ObjectHideFlags: 1
