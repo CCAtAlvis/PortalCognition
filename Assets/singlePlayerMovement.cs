@@ -12,9 +12,16 @@ public class singlePlayerMovement : MonoBehaviour {
     public Transform playerTransform;
     public Rigidbody rb;
     public GameObject portalbullet;
+    public GameObject portalbullet2;
     private PortalBulletController pbc;
+    //private DestroyObject d;
 	// Use this for initialization
 	void Start () {
+        //d = gameObject.GetComponent<DestroyObject>();
+        //d.initialPosition = transform.position;
+        //d.initialRotation = transform.rotation;
+        //d.initialTransform.position = transform.position;
+        //d.initialTransform.rotation = transform.rotation;
         portalBlue = Instantiate(portalBlue);
         portalBlue.SetActive(false);
         portalRed = Instantiate(portalRed);
@@ -59,6 +66,7 @@ public class singlePlayerMovement : MonoBehaviour {
             pbc = portalbullet.GetComponent<PortalBulletController>();
             pbc.portalPrefab = portalBlue;
             pbc.otherPortal = portalRed;
+            pbc.ResetObj();
         }
         if(Input.GetKey(KeyCode.E))
         {
@@ -76,6 +84,17 @@ public class singlePlayerMovement : MonoBehaviour {
             pbc = portalbullet2.GetComponent<PortalBulletController>();
             pbc.portalPrefab = portalRed;
             pbc.otherPortal = portalBlue;
+            pbc.ResetObj();
         }
 	}
+   /* void OnTriggerEnter(Collider other)
+    {
+        if("Constraints"==other.tag)
+        {
+            Debug.Log("hit trigger");
+            rb.velocity = Vector3.zero;
+            d.DestroyFunction();
+
+        }
+    }*/
 }
