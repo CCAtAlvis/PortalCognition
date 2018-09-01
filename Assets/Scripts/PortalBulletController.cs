@@ -2,6 +2,7 @@
 
 public class PortalBulletController : MonoBehaviour
 {
+    public GameObject otherPortal;
     public GameObject portalPrefab;
     public Vector3 forward;
     public int speedMultiplier = 6;
@@ -9,10 +10,10 @@ public class PortalBulletController : MonoBehaviour
     [SerializeField]
     private Rigidbody rb;
 
-    private void Start()
-    {
-        rb.velocity = forward * speedMultiplier;
-    }
+	private void Start()
+	{
+		rb.velocity = forward * speedMultiplier;
+	}
 
     public void ResetObj()
     {
@@ -30,8 +31,12 @@ public class PortalBulletController : MonoBehaviour
         Vector3 contactNormal = other.contacts[0].normal;
 
         Quaternion portalRotation = Quaternion.LookRotation(contactNormal, Vector3.up);
-        GameObject spawnedPortal = Instantiate(portalPrefab, collisionPoint - forward.normalized * 1.01f, portalRotation);
-
+        //GameObject spawnedPortal = Instantiate(portalPrefab, collisionPoint - forward.normalized * 1.01f, portalRotation);
+        portalPrefab.transform.position = collisionPoint - forward.normalized * 1.01f;
+        portalPrefab.transform.rotation = portalRotation;
+        PortalMechanism pm = portalPrefab.GetComponent<PortalMechanism>();
+        pm.otherPortal = this.otherPortal;
+        portalPrefab.SetActive(true);
         //Destroy(this.gameObject);
         //instead of destroying.. disable it..
         //TODO: same as PlayerGunController

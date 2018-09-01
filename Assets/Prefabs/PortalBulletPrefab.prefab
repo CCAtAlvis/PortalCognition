@@ -41,7 +41,6 @@ GameObject:
   - component: {fileID: 23291996874751624}
   - component: {fileID: 114135528756639604}
   - component: {fileID: 54291500618317684}
-  - component: {fileID: 114150754498425288}
   m_Layer: 0
   m_Name: PortalBulletPrefab
   m_TagString: PortalBullet
@@ -143,43 +142,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 401d1c01615945d4ea667db18ed4f98c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  otherPortal: {fileID: 0}
   portalPrefab: {fileID: 1996913545714876, guid: e6b52329bd021454f8ef15d8198955e2,
     type: 2}
   forward: {x: 0, y: 0, z: 1}
   speedMultiplier: 6
   rb: {fileID: 54291500618317684}
---- !u!114 &114150754498425288
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1375354132611630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 82
-    i1: 40
-    i2: 3
-    i3: 109
-    i4: 237
-    i5: 189
-    i6: 40
-    i7: 84
-    i8: 200
-    i9: 235
-    i10: 112
-    i11: 243
-    i12: 122
-    i13: 150
-    i14: 161
-    i15: 39
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
 --- !u!135 &135256090634154506
 SphereCollider:
   m_ObjectHideFlags: 1
