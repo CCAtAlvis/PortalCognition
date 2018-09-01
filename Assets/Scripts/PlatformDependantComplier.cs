@@ -11,11 +11,11 @@ public class PlatformDependantComplier : MonoBehaviour
 #if UNITY_STANDALONE
         //Debug.Log ("standalone");
         display.SetActive(true);
-        //GVR.SetActive(false);
+        GVR.SetActive(false);
 #endif
 
 #if UNITY_ANDROID
-			Debug.log("hello");
+			Debug.Log("hello");
 #endif
     }
 }

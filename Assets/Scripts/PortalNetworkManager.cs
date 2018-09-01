@@ -14,20 +14,8 @@ public class PortalNetworkManager : NetworkManager
     private string ipAddress = "192.168.1.104";
     private int port = 7777;
 
-    private bool _isClientConnected = false;
     private static int noOfPlayer = 0;
     private NetworkConnection[] connections = new NetworkConnection[2];
-
-    private void Update()
-    {
-#if UNITY_ANDROID
-		if (!_isClientConnected && Input.GetKeyDown (KeyCode.Z))
-		{
-			PortalStartGameClient ();
-			_isClientConnected = true;
-		}
-#endif
-    }
 
     public override void OnStartServer()
     {
@@ -91,8 +79,8 @@ public class PortalNetworkManager : NetworkManager
     public void PortalStartGameClient()
     {
         Debug.Log("Starting Client...");
-        networkAddress = ipAddress;
-        networkPort = port;
+        //networkAddress = ipAddress;
+        //networkPort = port;
         StartClient();
     }
 }

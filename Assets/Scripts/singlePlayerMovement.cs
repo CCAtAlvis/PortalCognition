@@ -13,6 +13,8 @@ public class singlePlayerMovement : MonoBehaviour {
     public Rigidbody rb;
     public GameObject portalbullet;
     private PortalBulletController pbc;
+	private GameObject portalbullet2;
+
 	// Use this for initialization
 	void Start () {
         portalBlue = Instantiate(portalBlue);
