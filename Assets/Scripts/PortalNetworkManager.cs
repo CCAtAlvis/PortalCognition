@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
@@ -9,13 +7,22 @@ public class PortalNetworkManager : NetworkManager
     public GameObject startGameButton;
     public GameObject stopGameButton;
     public GameObject restartGameButton;
+    public GameObject canvas;
     public PortalGameManager PGM;
 
-    private string ipAddress = "192.168.1.104";
-    private int port = 7777;
+    public bool startAsServer;
 
     private static int noOfPlayer = 0;
     private NetworkConnection[] connections = new NetworkConnection[2];
+
+    private void Start()
+    {
+        if (startAsServer)
+        {
+            PortalStartGameServer();
+            canvas.SetActive(true);
+        }
+    }
 
     public override void OnStartServer()
     {
@@ -45,9 +52,7 @@ public class PortalNetworkManager : NetworkManager
 
     public override void OnStopServer()
     {
-#if UNITY_ANDROID
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-#endif
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void PortalStartGameServer()
@@ -79,8 +84,6 @@ public class PortalNetworkManager : NetworkManager
     public void PortalStartGameClient()
     {
         Debug.Log("Starting Client...");
-        //networkAddress = ipAddress;
-        //networkPort = port;
         StartClient();
     }
 }

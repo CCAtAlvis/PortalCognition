@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 4702679914256278}
   - component: {fileID: 114325245157023514}
   - component: {fileID: 135218902991590588}
+  - component: {fileID: 114307852662004916}
   m_Layer: 0
   m_Name: PortalPrefabOrange
   m_TagString: Potal
@@ -176,6 +177,38 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1286252271213220}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114307852662004916
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1996913545714876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 67
+    i1: 181
+    i2: 24
+    i3: 119
+    i4: 220
+    i5: 55
+    i6: 196
+    i7: 148
+    i8: 139
+    i9: 2
+    i10: 170
+    i11: 47
+    i12: 255
+    i13: 166
+    i14: 23
+    i15: 55
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114325245157023514
 MonoBehaviour:
   m_ObjectHideFlags: 1

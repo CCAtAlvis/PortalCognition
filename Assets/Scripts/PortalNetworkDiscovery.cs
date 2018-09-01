@@ -3,43 +3,38 @@ using UnityEngine.Networking;
 
 public class PortalNetworkDiscovery : NetworkDiscovery
 {
-	private PortalNetworkManager pnm;
-	private bool isConnected = false;
+    private bool startAsServer;
+    private PortalNetworkManager pnm;
+    private bool isConnected = false;
 
-	private void Start()
-	{
-		pnm = GetComponent<PortalNetworkManager> ();
-		Initialize ();
+    private void Start()
+    {
+        pnm = GetComponent<PortalNetworkManager>();
+        startAsServer = pnm.startAsServer;
+        Initialize();
 
-		#if UNITY_ANDROID
-		Debug.Log ("running on android");
-		StartAsClient();
-		#endif
-	}
+        if(startAsServer)
+            StartAsServer();
+        else
+            StartAsClient();
 
-	public void StartServerBroadcast()
-	{
-		#if UNITY_STANDALONE
-		StartAsServer();
-		#endif	
-	}
+        //#if UNITY_ANDROID
+        //Debug.Log ("running on android");
+        //StartAsClient();
+        //#endif
+    }
 
-	public void StopServerBroadcast()
-	{
-		#if UNITY_STANDALONE
-		StopBroadcast ();
-		#endif
-	}
+    public void StopServerBroadcast()
+    {
+        StopBroadcast();
+    }
 
-	public override void OnReceivedBroadcast(string fromAddress, string data)
-	{
-		Debug.Log ("broadcast received");
-		if (isConnected)
-			return;
-
-		pnm.networkAddress = fromAddress;
-		pnm.PortalStartGameClient ();
-		Debug.Log ("client connected");
-		isConnected = true;
-	}
+    public override void OnReceivedBroadcast(string fromAddress, string data)
+    {
+        Debug.LogError("broadcast received");
+        pnm.networkAddress = fromAddress;
+        pnm.PortalStartGameClient();
+        Debug.Log("client connected");
+        StopServerBroadcast();
+    }
 }

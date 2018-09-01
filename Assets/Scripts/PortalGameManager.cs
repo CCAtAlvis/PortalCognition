@@ -33,18 +33,11 @@ public class PortalGameManager : NetworkBehaviour
         checkpointsUI.text = "Checkpoints: ";
     }
 
-    /// <summary>
-    /// Add time (in sec) to display timer
-    /// </summary>
-    /// <param name="_time">time in seconds</param>
     public void AddTime(float _time)
     {
         displayTimer += _time;
     }
 
-    /// <summary>
-    /// stop the game!
-    /// </summary>
     public void StopGame()
     {
         Time.timeScale = 0;
