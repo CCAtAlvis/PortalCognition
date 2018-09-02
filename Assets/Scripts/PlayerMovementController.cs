@@ -63,19 +63,26 @@ public class PlayerMovementController : NetworkBehaviour
         float temp = player.rigidbody.velocity.y;
         Vector3 velocity = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.W))
-        {
-            //playerRb.AddForce(camForward.normalized * forceMultiplier);
-            //playerRb.AddForce(playerMesh.transform.forward * forceMultiplier);
-            velocity = player.mesh.transform.forward * mul.speed;
-        }
+		float ver = Input.GetAxis ("Vertical");
+		float hor = Input.GetAxis ("Horizontal");
 
-        if (Input.GetKey(KeyCode.S))
-            velocity = -player.mesh.transform.forward * mul.speed;
+		velocity += player.mesh.transform.forward * mul.speed * ver;
+		velocity += player.mesh.transform.right * mul.speed * hor;
+
+//		if (Input.GetKey(KeyCode.W))
+//        {
+//            //playerRb.AddForce(camForward.normalized * forceMultiplier);
+//            //playerRb.AddForce(playerMesh.transform.forward * forceMultiplier);
+//            velocity = player.mesh.transform.forward * mul.speed;
+//        }
+//
+//        if (Input.GetKey(KeyCode.S))
+//            velocity = -player.mesh.transform.forward * mul.speed;
 
         player.rigidbody.velocity = new Vector3(velocity.x, temp, velocity.z);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+//        if (Input.GetKeyDown(KeyCode.Space))
+		if(Input.GetButtonDown ("Jump"))
         {
             player.rigidbody.velocity += Vector3.up * mul.jump;
             transform.parent = null;
@@ -94,7 +101,7 @@ public class PlayerMovementController : NetworkBehaviour
         }
         else
         {
-            player.rigidbody.drag = 0.001f;
+            player.rigidbody.drag = 0.01f;
             player.rigidbody.useGravity = true;
         }
     }

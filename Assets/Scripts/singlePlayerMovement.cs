@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class singlePlayerMovement : MonoBehaviour {
 
-    public GameObject portalType;
     public GameObject portalBluePrefab;
     public GameObject portalRedPrefab;
     public GameObject portalBlue;
@@ -59,7 +58,7 @@ public class singlePlayerMovement : MonoBehaviour {
             portalbullet.transform.forward = playerTransform.forward;
             portalbullet.SetActive(true);
             pbc = portalbullet.GetComponent<PortalBulletController>();
-            pbc.portalPrefab = portalBlue;
+            pbc.selfPortal = portalBlue;
             pbc.otherPortal = portalRed;
         }
         if(Input.GetKey(KeyCode.E))
@@ -76,7 +75,7 @@ public class singlePlayerMovement : MonoBehaviour {
             Debug.Log(portalbullet2.transform.forward);
             portalbullet2.SetActive(true);
             pbc = portalbullet2.GetComponent<PortalBulletController>();
-            pbc.portalPrefab = portalRed;
+            pbc.selfPortal = portalRed;
             pbc.otherPortal = portalBlue;
         }
 	}

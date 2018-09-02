@@ -289,7 +289,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1312145563117788}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.4, y: 0, z: -8.2}
+  m_LocalPosition: {x: 5.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4503306060003500}
@@ -378,6 +378,10 @@ MonoBehaviour:
   display: {fileID: 1035500944964676}
   actualTimer: 0
   displayTimer: 0
+  prefabs:
+    bullet: {fileID: 0}
+    blue: {fileID: 0}
+    red: {fileID: 0}
 --- !u!114 &114172025922021222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -698,7 +702,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1312145563117788}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 227461547, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
@@ -827,10 +831,11 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
-  startGameButton: {fileID: 1405944046808366}
-  stopGameButton: {fileID: 1627409679521340}
-  restartGameButton: {fileID: 1348612170512778}
-  canvas: {fileID: 1035500944964676}
+  display:
+    startGameButton: {fileID: 0}
+    stopGameButton: {fileID: 0}
+    restartGameButton: {fileID: 0}
+    canvas: {fileID: 0}
   PGM: {fileID: 114163108575116348}
   startAsServer: 0
 --- !u!114 &114771253671724532

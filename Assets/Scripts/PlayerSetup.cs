@@ -23,11 +23,6 @@ public class PlayerSetup : NetworkBehaviour
         //Destroy(this);
     }
 
-    public void SetPlayerConnection(NetworkConnection _conn)
-    {
-        conn = _conn;
-    }
-
     private void ChangeRendererRecursively(Transform _trans, bool _set)
     {
         Renderer ren = _trans.gameObject.GetComponent<Renderer>();

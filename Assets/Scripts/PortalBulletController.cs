@@ -3,12 +3,16 @@
 public class PortalBulletController : MonoBehaviour
 {
     public GameObject otherPortal;
-    public GameObject portalPrefab;
+    public GameObject selfPortal;
     public Vector3 forward;
     public int speedMultiplier = 6;
-
-    [SerializeField]
+	public float ttl;
+    
+	[SerializeField]
     private Rigidbody rb;
+	private float timer;
+
+	public GameObject portalToSpawn;
 
 	private void Start()
 	{
@@ -18,12 +22,16 @@ public class PortalBulletController : MonoBehaviour
     public void ResetObj()
     {
         rb.velocity = forward * speedMultiplier;
+		timer = 0;
     }
 
-    //void FixedUpdate()
-    //{
-    //    rb.AddForce(forward, ForceMode.Impulse);
-    //}
+    private void Update()
+    {
+		timer += Time.deltaTime;
+
+		if (timer >= ttl)
+			gameObject.SetActive (false);
+    }
 
     void OnCollisionEnter(Collision other)
     {
@@ -31,12 +39,12 @@ public class PortalBulletController : MonoBehaviour
         Vector3 contactNormal = other.contacts[0].normal;
 
         Quaternion portalRotation = Quaternion.LookRotation(contactNormal, Vector3.up);
-        //GameObject spawnedPortal = Instantiate(portalPrefab, collisionPoint - forward.normalized * 1.01f, portalRotation);
-        portalPrefab.transform.position = collisionPoint - forward.normalized * 1.01f;
-        portalPrefab.transform.rotation = portalRotation;
-        PortalMechanism pm = portalPrefab.GetComponent<PortalMechanism>();
-        pm.otherPortal = this.otherPortal;
-        portalPrefab.SetActive(true);
+        //GameObject spawnedPortal = Instantiate(selfPortal, collisionPoint - forward.normalized * 1.01f, portalRotation);
+        selfPortal.transform.position = collisionPoint - forward.normalized * 1.01f;
+        selfPortal.transform.rotation = portalRotation;
+        PortalMechanism pm = selfPortal.GetComponent<PortalMechanism>();
+        pm.otherPortal = otherPortal;
+        selfPortal.SetActive(true);
         //Destroy(this.gameObject);
         //instead of destroying.. disable it..
         //TODO: same as PlayerGunController
@@ -44,10 +52,6 @@ public class PortalBulletController : MonoBehaviour
         //disable already created one 
         //and respwan it in new position
         //do the same in the manager script for Portal 
-        this.gameObject.SetActive(false);
-    }
-
-    public void Destroy()
-    {
+        gameObject.SetActive(false);
     }
 }
