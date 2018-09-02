@@ -973,7 +973,7 @@ MonoBehaviour:
   thingsToDisable:
   - {fileID: 20770539429564728}
   - {fileID: 81809875688847804}
-  sp: {fileID: 4291427550223622}
+  sp: {fileID: 0}
 --- !u!114 &114575464223170462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1024,7 +1024,9 @@ MonoBehaviour:
     camera: {fileID: 20770539429564728}
   bulletPrefab: {fileID: 1375354132611630, guid: 5228036dedbd2854c8eb70f37a96a127,
     type: 2}
-  portalToSpawn: {fileID: 0}
+  self: {fileID: 0}
+  other: {fileID: 0}
+  _bullet: {fileID: 1375354132611630, guid: 5228036dedbd2854c8eb70f37a96a127, type: 2}
 --- !u!124 &124572601670039562
 Behaviour:
   m_ObjectHideFlags: 1

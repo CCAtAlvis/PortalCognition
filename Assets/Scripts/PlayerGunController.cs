@@ -27,33 +27,20 @@ public class PlayerGunController : NetworkBehaviour
 
     public Player player;
     public GameObject bulletPrefab;
-    public GameObject portalToSpawn;
 
+    [SerializeField, HideInInspector]
     public Bullet bullet;
     private Box box;
     private bool isHoldingBox = false;
 
+    [HideInInspector]
     public GameObject self;
+    [HideInInspector]
     public GameObject other;
     public GameObject _bullet;
-
-    private int playerID;
-
     private GameObject spawnedBullet;
 
-    private void InitPlayer(GameObject _bullet)
-    {
-        //GameObject _bullet = Instantiate(bulletPrefab, player.spawnPoint);
-        bullet.obj = _bullet;
-        bullet.obj.transform.parent = null;
-        bullet.obj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        bullet.rigidbody = _bullet.GetComponent<Rigidbody>();
-        bullet.controller = _bullet.GetComponent<PortalBulletController>();
-        Debug.Log (bullet.obj);
-        bullet.controller.selfPortal = this.self;
-        bullet.controller.otherPortal = this.other;
-        bullet.obj.SetActive(false);
-    }
+    private int playerID;
 
     private void Update()
     {
@@ -66,9 +53,14 @@ public class PlayerGunController : NetworkBehaviour
             Debug.Log("firing portal");
             if (!isHoldingBox)
             {
+                //Debug.Log(_bullet);
+                //Debug.Log(bullet.obj);
+                //Debug.Log(bullet.rigidbody);
+                //Debug.Log(bullet.controller);
                 //TODO: convert this to proper Server-Client network code
-                //FirePortal(bullet, player.spawnPoint.position, player.camera.transform.forward);
-                CmdFirePortal(player.spawnPoint.position, player.camera.transform.forward);
+                //FirePortal(player.spawnPoint.position, player.camera.transform.forward);
+                //CmdFirePortal(player.spawnPoint.position, player.camera.transform.forward);
+                CmdPortal(player.spawnPoint.position, player.camera.transform.forward);
             }
         }
 
@@ -95,20 +87,40 @@ public class PlayerGunController : NetworkBehaviour
         }
     }
 
+    [Command]
+    private void CmdPortal(Vector3 _position, Vector3 _forward)
+    {
+        if (spawnedBullet != null)
+            Destroy(spawnedBullet);
+
+        GameObject bul = Instantiate(bulletPrefab);
+        bul.transform.position = _position;
+        //PortalBulletController pbc = bul.GetComponent<PortalBulletController>();
+        //pbc.ResetObj(_forward);
+        RpcPortal(bul, _forward);
+        NetworkServer.Spawn(bul);
+        spawnedBullet = bul;
+    }
+
+    [ClientRpc]
+    private void RpcPortal(GameObject bul, Vector3 _forward)
+    {
+        PortalBulletController pbc = bul.GetComponent<PortalBulletController>();
+        pbc.ResetObj(_forward);
+    }
 
     [Command]
     private void CmdFirePortal(Vector3 _position, Vector3 _forward)
     {
-        FirePortal(bullet, _position, _forward);
+        FirePortal(_position, _forward);
     }
 
-    private void FirePortal(Bullet _bullet, Vector3 _position, Vector3 _forward)
+    private void FirePortal(Vector3 _position, Vector3 _forward)
     {
         bullet.obj.SetActive(true);
         bullet.rigidbody.isKinematic = true;
         bullet.obj.transform.position = _position;
-        bullet.controller.forward = _forward;
-        bullet.controller.ResetObj();
+        bullet.controller.ResetObj(_forward);
         bullet.rigidbody.isKinematic = false;
     }
 
@@ -125,7 +137,7 @@ public class PlayerGunController : NetworkBehaviour
         if (Physics.Raycast(_position, _direction, out hit, player.gravityGunRange))
         {
             string goTag = hit.transform.gameObject.tag;
-            Debug.Log(goTag);
+            //Debug.Log(goTag);
 
             if ("Box" == goTag)
             {
@@ -140,7 +152,7 @@ public class PlayerGunController : NetworkBehaviour
                 box.rigidbody.isKinematic = true;
                 box.obj.transform.position = _position + _forward * 0.2f - Vector3.up * 0.3f;
                 box.obj.transform.localScale = new Vector3(2, 2, 2);
-                Debug.Log(box);
+                //Debug.Log(box);
                 isHoldingBox = true;
             }
         }
@@ -166,12 +178,25 @@ public class PlayerGunController : NetworkBehaviour
         isHoldingBox = false;
     }
 
-    public void SetPlayer(int _id, GameObject _self, GameObject _other, GameObject _bullet)
+    public void InitPlayer(NetworkInstanceId _self, NetworkInstanceId _other, NetworkInstanceId _inBullet)
     {
-        Debug.Log("in here");
-        playerID = _id;
-        self = _self;
-        other = _other;
-        InitPlayer(_bullet);
+        Debug.LogError("in here");
+        self = NetworkServer.FindLocalObject(_self);
+        other = NetworkServer.FindLocalObject(_other);
+        //_bullet = NetworkServer.FindLocalObject(_inBullet);
+        Debug.LogError(_self + "   :   " + _other + "   :   " + _inBullet);
+        Debug.LogError(self + "   :   " + other + "   :   " + _bullet);
+        //SetBullet(_bullet);
+    }
+
+    private void SetBullet(GameObject _inCommingBullet)
+    {
+        bullet.obj = _inCommingBullet;
+        bullet.obj.transform.parent = null;
+        bullet.obj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        bullet.rigidbody = _inCommingBullet.GetComponent<Rigidbody>();
+        bullet.controller = _inCommingBullet.GetComponent<PortalBulletController>();
+        //Debug.Log(bullet.obj);
+        bullet.obj.SetActive(false);
     }
 }

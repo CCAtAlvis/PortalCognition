@@ -2,26 +2,32 @@
 
 public class PortalBulletController : MonoBehaviour
 {
-    public GameObject otherPortal;
     public GameObject selfPortal;
-    public Vector3 forward;
+    public GameObject otherPortal;
+
     public int speedMultiplier = 6;
-	public float ttl;
+    public float ttl;
+
+    [HideInInspector]
+    public Vector3 forward;
     
 	[SerializeField]
     private Rigidbody rb;
 	private float timer;
 
-	public GameObject portalToSpawn;
+	//public GameObject portalToSpawn;
 
 	private void Start()
 	{
+        //Debug.LogError("starting bullet forward: " + forward);
 		rb.velocity = forward * speedMultiplier;
 	}
 
-    public void ResetObj()
+    public void ResetObj(Vector3 _forward)
     {
-        rb.velocity = forward * speedMultiplier;
+        Debug.LogError("reset obj " + _forward);
+        Debug.LogError(_forward);
+        rb.velocity = _forward * speedMultiplier;
 		timer = 0;
     }
 

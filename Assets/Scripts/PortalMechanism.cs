@@ -2,15 +2,32 @@
 
 public class PortalMechanism : MonoBehaviour
 {
-    public GameObject incomingPlayer;
     public GameObject otherPortal;
+
+    [HideInInspector]
+    public GameObject incomingPlayer;
+
     private GameObject player;
     private Rigidbody playerrb;
+
+    public float ttl;
+    private float timer;
 
     // Use this for initialization
     void Start()
     {
         incomingPlayer = null;
+    }
+
+    private void Update()
+    {
+        timer += Time.deltaTime;
+        
+        if(timer>ttl)
+        {
+            timer = 0;
+            gameObject.SetActive(false);
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -27,7 +44,6 @@ public class PortalMechanism : MonoBehaviour
             }
             if (otherPortal.activeSelf == false)
                 return;
-
 
             PortalMechanism pm = otherPortal.GetComponent<PortalMechanism>();
             pm.incomingPlayer = player;
@@ -51,6 +67,9 @@ public class PortalMechanism : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+        if (other.gameObject == player)
+            return;
+
         incomingPlayer = null;
         gameObject.SetActive(false);
         otherPortal.SetActive(false);

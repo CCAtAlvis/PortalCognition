@@ -21,11 +21,21 @@ public class PortalNetworkManager : NetworkManager
 		public GameObject blue;
 		public GameObject red;
 	}
-	public Prefabs prefabs;
-	private GameObject portalBlue;
-	private GameObject portalRed;
-    private GameObject bulletBlue;
-    private GameObject bulletRed;
+    //public Prefabs prefabs;
+
+    public GameObject portalBlue;
+	public GameObject portalRed;
+    public GameObject bulletBlue;
+    public GameObject bulletRed;
+
+    public struct NIDS
+    {
+        public NetworkInstanceId portalBlue;
+        public NetworkInstanceId portalRed;
+        public NetworkInstanceId bulletBlue;
+        public NetworkInstanceId bulletRed;
+    };
+    private NIDS nids;
 
     public PortalGameManager PGM;
     public bool startAsServer;
@@ -34,11 +44,17 @@ public class PortalNetworkManager : NetworkManager
     private NetworkConnection[] connections = new NetworkConnection[2];
     private GameObject[] players = new GameObject[2];
 
-    public GameObject player1;
-    public GameObject player2;
+    //public GameObject player1;
+    //public GameObject player2;
 
     private void Start()
 	{
+        nids.portalBlue = portalBlue.GetComponent<NetworkIdentity>().netId;
+        nids.bulletBlue = bulletBlue.GetComponent<NetworkIdentity>().netId;
+
+        nids.portalRed = portalRed.GetComponent<NetworkIdentity>().netId;
+        nids.bulletRed = bulletRed.GetComponent<NetworkIdentity>().netId;
+
         if (startAsServer)
         {
             PortalStartGameServer();
@@ -46,23 +62,7 @@ public class PortalNetworkManager : NetworkManager
         }
     }
 
-    public override void OnStartServer()
-    {
-        //Debug.Log("Server Started.");
-        //portalBlue = Instantiate(prefabs.blue);
-        ////NetworkServer.Spawn(portalBlue);
-        //portalBlue.SetActive(false);
-        //bulletBlue = Instantiate(prefabs.bullet);
-        ////NetworkServer.Spawn(bulletBlue);
-        //bulletBlue.SetActive(false);
-
-        //portalRed = Instantiate(prefabs.red);
-        ////NetworkServer.Spawn(portalRed);
-        //portalRed.SetActive(false);
-        //bulletRed = Instantiate(prefabs.bullet);
-        ////NetworkServer.Spawn(bulletRed);
-        //bulletRed.SetActive(false);
-    }
+    public override void OnStartServer() { }
 
     public override void OnServerConnect(NetworkConnection conn)
     {
@@ -74,24 +74,46 @@ public class PortalNetworkManager : NetworkManager
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
         GameObject player = Instantiate(playerPrefab, GetStartPosition());
-        players[noOfPlayer - 1] = player;
+        PlayerGunController pgc = player.GetComponent<PlayerGunController>();
+        //players[noOfPlayer - 1] = player;
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
         NetworkServer.Spawn(player);
 
-        if (2 == noOfPlayer)
-		{
-            //NetworkServer.AddPlayerForConnection(conn, player2, playerControllerId);
-            //PGM.();
-            //pcg.SetPlayer (2, portalRed, portalBlue, bulletRed);
-            PGM.InitPlayers(connections, players);
-        }
         if (1 == noOfPlayer)
+		{
+            PGM.InitPlayer(conn, player, portalBlue, portalRed, bulletBlue);
+            //pgc.SetPlayer(1, portalBlue, portalRed, bulletBlue);
+            //pgc.InitPlayer(nids.portalBlue, nids.portalRed, nids.bulletBlue);
+        }
+        else if (2 == noOfPlayer)
         {
-            //NetworkServer.AddPlayerForConnection(conn, player1, playerControllerId);
-            //player1.GetComponent<PlayerSetup> ().StartUp();
-            //pcg.SetPlayer (1, portalBlue, portalRed, bulletBlue);
+            PGM.InitPlayer(conn, player, portalRed, portalBlue, bulletRed);
+            //pgc.SetPlayer(1, portalRed, portalBlue, bulletRed);
+            //pgc.InitPlayer(nids.portalRed, nids.portalBlue, nids.bulletRed);
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public override void OnStopServer()
     {

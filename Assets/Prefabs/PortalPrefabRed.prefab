@@ -37,7 +37,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4637822126120832}
   - component: {fileID: 33966214632738430}
-  - component: {fileID: 136591282322458442}
   - component: {fileID: 23673406107371706}
   m_Layer: 0
   m_Name: Cylinder
@@ -72,10 +71,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4702679914256278}
   - component: {fileID: 114325245157023514}
-  - component: {fileID: 135218902991590588}
+  - component: {fileID: 65165379906302154}
   - component: {fileID: 114307852662004916}
   m_Layer: 0
-  m_Name: PortalPrefabOrange
+  m_Name: PortalPrefabRed
   m_TagString: Potal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,8 +125,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1996913545714876}
-  m_LocalRotation: {x: 0, y: 1, z: -0, w: -0}
-  m_LocalPosition: {x: 2.2777498, y: 0.49999908, z: 0.022417545}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -5.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4637822126120832}
@@ -135,7 +134,7 @@ Transform:
   - {fileID: 4558211311218844}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23673406107371706
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -177,6 +176,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1286252271213220}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65165379906302154
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1996913545714876}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6, y: 6, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0.4}
 --- !u!114 &114307852662004916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -220,34 +231,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a68092ff01098584f9a22f95bef5c5fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  otherPortal: {fileID: 0}
   incomingPlayer: {fileID: 0}
-  otherPortal: {fileID: 1996913545714876, guid: e6b52329bd021454f8ef15d8198955e2,
-    type: 2}
---- !u!135 &135218902991590588
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1996913545714876}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2.57
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &136591282322458442
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1286252271213220}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  ttl: 0
 --- !u!198 &198021203167749920
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -308,7 +294,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -936668467
+  randomSeed: 373113081
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3669,7 +3655,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2107661038
+  randomSeed: -948472663
   InitialModule:
     serializedVersion: 3
     enabled: 1

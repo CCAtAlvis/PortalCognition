@@ -17,11 +17,6 @@ public class PortalNetworkDiscovery : NetworkDiscovery
             StartAsServer();
         else
             StartAsClient();
-
-        //#if UNITY_ANDROID
-        //Debug.Log ("running on android");
-        //StartAsClient();
-        //#endif
     }
 
     public void StopServerBroadcast()
