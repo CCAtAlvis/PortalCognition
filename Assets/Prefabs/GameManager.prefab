@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 4621453316354062}
   - component: {fileID: 114735880893498764}
   - component: {fileID: 114699879167135160}
+  - component: {fileID: 114206549001032474}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -508,6 +509,27 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114206549001032474
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1312145563117788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f94ffd984edae0747877029dc56e9199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BroadcastPort: 47777
+  m_BroadcastKey: 2222
+  m_BroadcastVersion: 1
+  m_BroadcastSubVersion: 1
+  m_BroadcastInterval: 1000
+  m_UseNetworkManager: 1
+  m_BroadcastData: HELLO
+  m_ShowGUI: 0
+  m_OffsetX: 0
+  m_OffsetY: 0
 --- !u!114 &114298193191495392
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -570,6 +592,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114735880893498764}
         m_MethodName: PortalStartGameServer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114206549001032474}
+        m_MethodName: StartServerBroadcast
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
