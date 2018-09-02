@@ -14,14 +14,8 @@ public class singlePlayerMovement : MonoBehaviour {
     public GameObject portalbullet;
     public GameObject portalbullet2;
     private PortalBulletController pbc;
-    //private DestroyObject d;
 	// Use this for initialization
 	void Start () {
-        //d = gameObject.GetComponent<DestroyObject>();
-        //d.initialPosition = transform.position;
-        //d.initialRotation = transform.rotation;
-        //d.initialTransform.position = transform.position;
-        //d.initialTransform.rotation = transform.rotation;
         portalBlue = Instantiate(portalBlue);
         portalBlue.SetActive(false);
         portalRed = Instantiate(portalRed);
@@ -56,8 +50,6 @@ public class singlePlayerMovement : MonoBehaviour {
         }
         if(Input.GetKey(KeyCode.Q))
         {
-            // portalType = portalBlue;
-            // GameObject g = Instantiate(portalbullet, playerTransform.position - playerTransform.right*5, Quaternion.identity);
             portalbullet.SetActive(false);
             portalbullet.transform.position = playerTransform.position + playerTransform.forward * 2;
             portalbullet.transform.rotation = Quaternion.identity;
@@ -70,8 +62,6 @@ public class singlePlayerMovement : MonoBehaviour {
         }
         if(Input.GetKey(KeyCode.E))
         {
-            //portalType = portalRed;
-            //GameObject g = Instantiate(portalbullet, playerTransform.position + playerTransform.right * 5, Quaternion.identity);
             portalbullet2.SetActive(false);
             portalbullet2.transform.position = playerTransform.position + playerTransform.forward * 2;
             Debug.Log("position");
@@ -87,14 +77,4 @@ public class singlePlayerMovement : MonoBehaviour {
             pbc.ResetObj();
         }
 	}
-   /* void OnTriggerEnter(Collider other)
-    {
-        if("Constraints"==other.tag)
-        {
-            Debug.Log("hit trigger");
-            rb.velocity = Vector3.zero;
-            d.DestroyFunction();
-
-        }
-    }*/
 }
