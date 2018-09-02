@@ -53,6 +53,6 @@ public class PortalMechanism : MonoBehaviour
     {
         incomingPlayer = null;
         gameObject.SetActive(false);
-        //otherPortal.SetActive(false);
+        otherPortal.SetActive(false);
     }
 }

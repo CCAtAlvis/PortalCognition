@@ -379,9 +379,9 @@ MonoBehaviour:
   actualTimer: 0
   displayTimer: 0
   prefabs:
-    bullet: {fileID: 0}
-    blue: {fileID: 0}
-    red: {fileID: 0}
+    bullet: {fileID: 1375354132611630, guid: 5228036dedbd2854c8eb70f37a96a127, type: 2}
+    blue: {fileID: 1996913545714876, guid: e6b52329bd021454f8ef15d8198955e2, type: 2}
+    red: {fileID: 1996913545714876, guid: 43b51877dc37c4948b02aa2fffa61737, type: 2}
 --- !u!114 &114172025922021222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -532,7 +532,7 @@ MonoBehaviour:
   m_UseNetworkManager: 1
   m_BroadcastData: HELLO
   m_ShowGUI: 0
-  m_OffsetX: 417
+  m_OffsetX: 0
   m_OffsetY: 0
 --- !u!114 &114298193191495392
 MonoBehaviour:
@@ -759,7 +759,7 @@ MonoBehaviour:
   m_ServerBindToIP: 0
   m_ServerBindAddress: 
   m_NetworkAddress: localhost
-  m_DontDestroyOnLoad: 0
+  m_DontDestroyOnLoad: 1
   m_RunInBackground: 1
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
@@ -767,15 +767,14 @@ MonoBehaviour:
   m_PlayerPrefab: {fileID: 1680593435336398, guid: 3eed8093a8647ec40a23f05b8242dbf8,
     type: 2}
   m_AutoCreatePlayer: 1
-  m_PlayerSpawnMethod: 1
+  m_PlayerSpawnMethod: 0
   m_OfflineScene: 
   m_OnlineScene: 
   m_SpawnPrefabs:
+  - {fileID: 1375354132611630, guid: 5228036dedbd2854c8eb70f37a96a127, type: 2}
   - {fileID: 1996913545714876, guid: e6b52329bd021454f8ef15d8198955e2, type: 2}
   - {fileID: 1996913545714876, guid: 43b51877dc37c4948b02aa2fffa61737, type: 2}
-  - {fileID: 1762488302690824, guid: 537f99d947d244e47a9093465431c584, type: 2}
   - {fileID: 1931048709134840, guid: bab837b8c5f58a9449db9b89e073826f, type: 2}
-  - {fileID: 1375354132611630, guid: 5228036dedbd2854c8eb70f37a96a127, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -832,10 +831,14 @@ MonoBehaviour:
   isNetworkActive: 0
   matchMaker: {fileID: 0}
   display:
-    startGameButton: {fileID: 0}
-    stopGameButton: {fileID: 0}
-    restartGameButton: {fileID: 0}
-    canvas: {fileID: 0}
+    startGameButton: {fileID: 1405944046808366}
+    stopGameButton: {fileID: 1627409679521340}
+    restartGameButton: {fileID: 1348612170512778}
+    canvas: {fileID: 1035500944964676}
+  prefabs:
+    bullet: {fileID: 1375354132611630, guid: 5228036dedbd2854c8eb70f37a96a127, type: 2}
+    blue: {fileID: 1996913545714876, guid: e6b52329bd021454f8ef15d8198955e2, type: 2}
+    red: {fileID: 1996913545714876, guid: 43b51877dc37c4948b02aa2fffa61737, type: 2}
   PGM: {fileID: 114163108575116348}
   startAsServer: 0
 --- !u!114 &114771253671724532

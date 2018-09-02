@@ -27,34 +27,42 @@ public class PortalGameManager : NetworkBehaviour
 
 	private GameObject portalBlue;
 	private GameObject portalRed;
-	private GameObject portalBulletBlue;
-	private GameObject portalBulletRed;
+	private GameObject bulletBlue;
+	private GameObject bulletRed;
 
-//	public void InitPlayers(NetworkConnection[] connections, GameObject[] players)
-//	{
-//		portalBlue = Instantiate(prefabs.blue);
-//		portalBlue.SetActive(false);
-//		portalRed = Instantiate(prefabs.red);
-//		portalRed.SetActive(false);
-//		portalBulletBlue = Instantiate(prefabs.bullet);
-//		portalBulletBlue.SetActive(false);
-//		portalBulletRed = Instantiate(prefabs.bullet);
-//		portalBulletRed.SetActive(false);
-//
-//		TargetInit(connections[0], players[0], portalBlue, portalRed, portalBulletBlue);
-//		//TargetInit(connections[1], portalRed, portalBlue, portalBulletRed);
-//	}
-//
-//	[TargetRpc]
-//	private void TargetInit (NetworkConnection target, GameObject player, GameObject _self, GameObject _other, GameObject _bullet)
-//	{
-//		PlayerGunController pgc = player.GetComponent<PlayerGunController> ();
-//		pgc.self = _self;
-//		pgc.other = _other;
-//		pgc._bullet = _bullet;
-//		pgc.Init ();
-//	}
+    public void InitPlayers(NetworkConnection[] connections, GameObject[] players)
+    {
+        portalBlue = Instantiate(prefabs.blue);
+        portalBlue.SetActive(false);
+        NetworkServer.Spawn(portalBlue);
 
+        bulletBlue = Instantiate(prefabs.bullet);
+        bulletBlue.SetActive(false);
+        NetworkServer.Spawn(bulletBlue);
+
+
+
+        portalRed = Instantiate(prefabs.red);
+        portalRed.SetActive(false);
+        NetworkServer.Spawn(portalRed);
+        bulletRed = Instantiate(prefabs.bullet);
+    
+        bulletRed.SetActive(false);
+        NetworkServer.Spawn(bulletRed);
+
+        TargetInit(connections[0], players[0], portalBlue, portalRed, bulletBlue);
+        TargetInit(connections[1], players[1], portalRed, portalBlue, bulletRed);
+    }
+
+    [TargetRpc]
+    private void TargetInit(NetworkConnection target, GameObject player, GameObject _self, GameObject _other, GameObject _bullet)
+    {
+        PlayerGunController pgc = player.GetComponent<PlayerGunController>();
+        pgc.self = _self;
+        pgc.other = _other;
+        pgc._bullet = _bullet;
+        //pgc.Init();
+    }
 
     private void Update()
     {

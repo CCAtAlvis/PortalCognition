@@ -27,49 +27,55 @@ public class PlayerGunController : NetworkBehaviour
 
     public Player player;
     public GameObject bulletPrefab;
-	public GameObject portalToSpawn;
+    public GameObject portalToSpawn;
 
     public Bullet bullet;
     private Box box;
     private bool isHoldingBox = false;
 
-	private GameObject self;
-	private GameObject other;
+    public GameObject self;
+    public GameObject other;
+    public GameObject _bullet;
 
-	private int playerID;
+    private int playerID;
 
-	private void InitPlayer() {
-		GameObject _bullet = Instantiate(bulletPrefab, player.spawnPoint);
-		bullet.obj = _bullet;
-		bullet.obj.transform.parent = null;
-		bullet.obj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-		bullet.rigidbody = _bullet.GetComponent<Rigidbody>();
-		bullet.controller = _bullet.GetComponent<PortalBulletController>();
-	//	Debug.Log (bullet.obj);
-		bullet.controller.selfPortal = this.self;
-		bullet.controller.otherPortal = this.other;
-		bullet.obj.SetActive(false);
-	}
+    private GameObject spawnedBullet;
+
+    private void InitPlayer(GameObject _bullet)
+    {
+        //GameObject _bullet = Instantiate(bulletPrefab, player.spawnPoint);
+        bullet.obj = _bullet;
+        bullet.obj.transform.parent = null;
+        bullet.obj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        bullet.rigidbody = _bullet.GetComponent<Rigidbody>();
+        bullet.controller = _bullet.GetComponent<PortalBulletController>();
+        Debug.Log (bullet.obj);
+        bullet.controller.selfPortal = this.self;
+        bullet.controller.otherPortal = this.other;
+        bullet.obj.SetActive(false);
+    }
 
     private void Update()
     {
         if (!isLocalPlayer)
             return;
 
-//        if (Input.GetMouseButtonDown(0))
-		if(Input.GetButtonDown ("Portal"))
+        //        if (Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Portal"))
         {
+            Debug.Log("firing portal");
             if (!isHoldingBox)
             {
                 //TODO: convert this to proper Server-Client network code
-				FirePortal (player.spawnPoint.position, player.camera.transform.forward);
-				CmdFirePortal (player.spawnPoint.position, player.camera.transform.forward);
+                //FirePortal(bullet, player.spawnPoint.position, player.camera.transform.forward);
+                CmdFirePortal(player.spawnPoint.position, player.camera.transform.forward);
             }
         }
 
-//        if (Input.GetMouseButtonDown(1))
-		if(Input.GetButtonDown ("GravityGun"))
+        //        if (Input.GetMouseButtonDown(1))
+        if (Input.GetButtonDown("GravityGun"))
         {
+            Debug.Log("gravity gun");
             if (isHoldingBox)
             {
                 ThrowBox();
@@ -90,19 +96,21 @@ public class PlayerGunController : NetworkBehaviour
     }
 
 
-	[Command]
-	private void CmdFirePortal(Vector3 _position, Vector3 _forward) {
-		FirePortal (_position, _forward);
-	}
+    [Command]
+    private void CmdFirePortal(Vector3 _position, Vector3 _forward)
+    {
+        FirePortal(bullet, _position, _forward);
+    }
 
-	private void FirePortal(Vector3 _position, Vector3 _forward) {
-		bullet.obj.SetActive(true);		
-		bullet.rigidbody.isKinematic = true;
-		bullet.obj.transform.position = _position;
-		bullet.controller.forward = _forward;
-		bullet.controller.ResetObj();
-		bullet.rigidbody.isKinematic = false;
-	}
+    private void FirePortal(Bullet _bullet, Vector3 _position, Vector3 _forward)
+    {
+        bullet.obj.SetActive(true);
+        bullet.rigidbody.isKinematic = true;
+        bullet.obj.transform.position = _position;
+        bullet.controller.forward = _forward;
+        bullet.controller.ResetObj();
+        bullet.rigidbody.isKinematic = false;
+    }
 
     [Command]
     private void CmdGravityGun(Vector3 _position, Vector3 _forward, Vector3 _direction)
@@ -157,12 +165,13 @@ public class PlayerGunController : NetworkBehaviour
 
         isHoldingBox = false;
     }
-		
-	public void SetPlayer(int _id, GameObject _self, GameObject _other)
-	{
-		playerID = _id;
-		self = _self;
-		other = _other;
-		InitPlayer();
-	}
+
+    public void SetPlayer(int _id, GameObject _self, GameObject _other, GameObject _bullet)
+    {
+        Debug.Log("in here");
+        playerID = _id;
+        self = _self;
+        other = _other;
+        InitPlayer(_bullet);
+    }
 }

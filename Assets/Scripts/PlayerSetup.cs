@@ -5,9 +5,14 @@ public class PlayerSetup : NetworkBehaviour
 {
     public Behaviour[] thingsToDisable;
     private Camera cam;
-    private NetworkConnection conn;
+    public Transform sp;
 
     private void Start()
+    {
+        StartUp();
+    }
+    
+    public void StartUp()
     {
         if (!isLocalPlayer)
         {
@@ -17,6 +22,9 @@ public class PlayerSetup : NetworkBehaviour
         else
         {
             Camera.main.gameObject.SetActive(false);
+            //Camera.main.transform.position = sp.position;
+            //Camera.main.transform.rotation = sp.rotation;
+            //Camera.main.transform.parent = sp;
             ChangeRendererRecursively(transform, false);
         }
 
