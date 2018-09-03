@@ -10,7 +10,7 @@ public class MultiTriggerPoint : MonoBehaviour
         //if (!isServer)
         //    return;
 
-        Debug.Log(other.tag);
+//        Debug.Log(other.tag);
 
         if ("Box" != other.tag && "Player" != other.tag)
             return;

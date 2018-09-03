@@ -131,7 +131,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &114135528756639604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 401d1c01615945d4ea667db18ed4f98c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selfPortal: {fileID: 0}
+  selfPortal: {fileID: 1996913545714876, guid: e6b52329bd021454f8ef15d8198955e2, type: 2}
   otherPortal: {fileID: 0}
   speedMultiplier: 6
   ttl: 5

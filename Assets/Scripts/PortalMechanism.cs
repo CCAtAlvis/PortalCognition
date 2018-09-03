@@ -7,6 +7,8 @@ public class PortalMechanism : MonoBehaviour
     [HideInInspector]
     public GameObject incomingPlayer;
 
+	public int type;
+
     private GameObject player;
     private Rigidbody playerrb;
 
@@ -17,6 +19,15 @@ public class PortalMechanism : MonoBehaviour
     void Start()
     {
         incomingPlayer = null;
+		PortalMechanism[] pms = FindObjectsOfType<PortalMechanism> ();
+
+		foreach (PortalMechanism pm in pms) {
+			Debug.Log (pm +"   pm: "+pm.type+"   this: "+this.type);
+			if (pm.type == this.type && pm.gameObject != this.gameObject)
+				Destroy (pm.gameObject);
+			else
+				otherPortal = pm.gameObject;
+		}
     }
 
     private void Update()
@@ -34,7 +45,7 @@ public class PortalMechanism : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Triggered");
+//            Debug.Log("Triggered");
             player = other.gameObject;
 
             if (incomingPlayer == player)
@@ -42,14 +53,15 @@ public class PortalMechanism : MonoBehaviour
                 Debug.Log("same incoming player");
                 return;
             }
-            if (otherPortal.activeSelf == false)
+
+			if (otherPortal == null || otherPortal.activeSelf == false)
                 return;
 
             PortalMechanism pm = otherPortal.GetComponent<PortalMechanism>();
             pm.incomingPlayer = player;
             playerrb = player.GetComponent<Rigidbody>();
             
-			player.SetActive(false);
+			//player.SetActive(false);
             Vector3 vel = playerrb.velocity;
             playerrb.isKinematic = true;
             float velMagnitute = vel.magnitude;
@@ -58,10 +70,12 @@ public class PortalMechanism : MonoBehaviour
             player.transform.position = otherPortal.transform.position;
             //Debug.Log(player.transform.position);
             //player.transform.forward = otherPortal.transform.forward;
-			player.SetActive(true);
+			//player.SetActive(true);
             playerrb.isKinematic = false;
             playerrb.velocity = otherPortal.transform.forward * velMagnitute;
             //Debug.Log(playerrb.velocity.magnitude);
+			
+			Destroy (this.gameObject);
         }
     }
 
@@ -71,7 +85,8 @@ public class PortalMechanism : MonoBehaviour
             return;
 
         incomingPlayer = null;
-        gameObject.SetActive(false);
-        otherPortal.SetActive(false);
+//        gameObject.SetActive(false);
+//        otherPortal.SetActive(false);
+		Destroy (this.gameObject);
     }
 }

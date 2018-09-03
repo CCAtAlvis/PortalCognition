@@ -81,13 +81,13 @@ public class PortalNetworkManager : NetworkManager
 
         if (1 == noOfPlayer)
 		{
-            PGM.InitPlayer(conn, player, portalBlue, portalRed, bulletBlue);
+            PGM.InitPlayer(conn, player, portalBlue, portalRed, bulletBlue, 1);
             //pgc.SetPlayer(1, portalBlue, portalRed, bulletBlue);
             //pgc.InitPlayer(nids.portalBlue, nids.portalRed, nids.bulletBlue);
         }
         else if (2 == noOfPlayer)
         {
-            PGM.InitPlayer(conn, player, portalRed, portalBlue, bulletRed);
+            PGM.InitPlayer(conn, player, portalRed, portalBlue, bulletRed, 2);
             //pgc.SetPlayer(1, portalRed, portalBlue, bulletRed);
             //pgc.InitPlayer(nids.portalRed, nids.portalBlue, nids.bulletRed);
         }

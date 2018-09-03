@@ -40,7 +40,16 @@ public class PlayerGunController : NetworkBehaviour
     public GameObject _bullet;
     private GameObject spawnedBullet;
 
+
+	public GameObject blue;
+	public GameObject red;
+
     private int playerID;
+	private Rigidbody rb;
+
+	private void Start() {
+		rb = GetComponent<Rigidbody> ();
+	}
 
     private void Update()
     {
@@ -53,14 +62,10 @@ public class PlayerGunController : NetworkBehaviour
             Debug.Log("firing portal");
             if (!isHoldingBox)
             {
-                //Debug.Log(_bullet);
-                //Debug.Log(bullet.obj);
-                //Debug.Log(bullet.rigidbody);
-                //Debug.Log(bullet.controller);
                 //TODO: convert this to proper Server-Client network code
                 //FirePortal(player.spawnPoint.position, player.camera.transform.forward);
                 //CmdFirePortal(player.spawnPoint.position, player.camera.transform.forward);
-                CmdPortal(player.spawnPoint.position, player.camera.transform.forward);
+				CmdPortal(player.spawnPoint.position, player.camera.transform.forward + rb.velocity, playerID);
             }
         }
 
@@ -88,25 +93,43 @@ public class PlayerGunController : NetworkBehaviour
     }
 
     [Command]
-    private void CmdPortal(Vector3 _position, Vector3 _forward)
+	private void CmdPortal(Vector3 _position, Vector3 _forward, int _id)
     {
         if (spawnedBullet != null)
             Destroy(spawnedBullet);
 
         GameObject bul = Instantiate(bulletPrefab);
         bul.transform.position = _position;
-        //PortalBulletController pbc = bul.GetComponent<PortalBulletController>();
-        //pbc.ResetObj(_forward);
-        RpcPortal(bul, _forward);
-        NetworkServer.Spawn(bul);
+		NetworkServer.Spawn(bul);
+
+		PortalBulletController pbc = bul.GetComponent<PortalBulletController>();
+
+		if (1 == _id) {
+			pbc.selfPortal = blue;
+			pbc.otherPortal = red;
+		} else {
+			pbc.selfPortal = red;
+			pbc.otherPortal = blue;
+		}
+
+		pbc.ResetObj(_forward);
+		RpcPortal(bul, _forward, _id);
         spawnedBullet = bul;
     }
 
     [ClientRpc]
-    private void RpcPortal(GameObject bul, Vector3 _forward)
+	private void RpcPortal(GameObject bul, Vector3 _forward, int _id)
     {
         PortalBulletController pbc = bul.GetComponent<PortalBulletController>();
         pbc.ResetObj(_forward);
+
+		if (1 == _id) {
+			pbc.selfPortal = blue;
+			pbc.otherPortal = red;
+		} else {
+			pbc.selfPortal = red;
+			pbc.otherPortal = blue;
+		}
     }
 
     [Command]
@@ -178,16 +201,35 @@ public class PlayerGunController : NetworkBehaviour
         isHoldingBox = false;
     }
 
-    public void InitPlayer(NetworkInstanceId _self, NetworkInstanceId _other, NetworkInstanceId _inBullet)
-    {
-        Debug.LogError("in here");
-        self = NetworkServer.FindLocalObject(_self);
-        other = NetworkServer.FindLocalObject(_other);
-        //_bullet = NetworkServer.FindLocalObject(_inBullet);
-        Debug.LogError(_self + "   :   " + _other + "   :   " + _inBullet);
-        Debug.LogError(self + "   :   " + other + "   :   " + _bullet);
-        //SetBullet(_bullet);
-    }
+//	public void InitPlayer(NetworkInstanceId _self, NetworkInstanceId _other, NetworkInstanceId _inBullet, int _id)
+//	{
+//		Debug.LogError("in here");
+//		playerID = _id;
+//
+//		PortalMechanism[] go = FindObjectsOfType<PortalMechanism> ();
+//
+//		foreach(PortalMechanism j in go){
+//			Debug.LogError (j);
+//		}
+//
+//		self = NetworkServer.FindLocalObject(_self);
+//		other = NetworkServer.FindLocalObject(_other);
+//		//_bullet = NetworkServer.FindLocalObject(_inBullet);
+//		Debug.LogError(_self + "   :   " + _other + "   :   " + _inBullet);
+//		Debug.LogError(self + "   :   " + other + "   :   " + _bullet);
+//		//SetBullet(_bullet);
+//	}
+	public void InitPlayer(int _id)
+	{
+		Debug.LogError("in here");
+		playerID = _id;
+
+		PortalMechanism[] go = FindObjectsOfType<PortalMechanism> ();
+
+		foreach(PortalMechanism j in go){
+			Debug.LogError (j);
+		}
+	}
 
     private void SetBullet(GameObject _inCommingBullet)
     {

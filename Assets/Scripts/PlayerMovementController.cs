@@ -90,7 +90,7 @@ public class PlayerMovementController : NetworkBehaviour
         }
     }
 
-    private void SetPlayerGrounded(bool _set)
+    public void SetPlayerGrounded(bool _set)
     {
         isPlayerGrounded = _set;
 
