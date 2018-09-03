@@ -56,7 +56,7 @@ public class PortalBulletController : MonoBehaviour
 //		GameObject p = Instantiate (selfPortal, collisionPoint - forward.normalized * 1.01f, portalRotation);
 		GameObject p = Instantiate (selfPortal);
 		p.transform.parent = null;
-		p.transform.position = collisionPoint - forward.normalized * .01f;
+		p.transform.position = collisionPoint - forward.normalized * .05f;
 		p.transform.rotation = portalRotation;
 
 //		selfPortal.transform.position = collisionPoint - forward.normalized * 1.01f;

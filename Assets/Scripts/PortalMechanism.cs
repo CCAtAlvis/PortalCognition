@@ -19,15 +19,14 @@ public class PortalMechanism : MonoBehaviour
     void Start()
     {
         incomingPlayer = null;
-		PortalMechanism[] pms = FindObjectsOfType<PortalMechanism> ();
+        PortalMechanism[] pms = FindObjectsOfType<PortalMechanism>();
 
-		foreach (PortalMechanism pm in pms) {
-			Debug.Log (pm +"   pm: "+pm.type+"   this: "+this.type);
-			if (pm.type == this.type && pm.gameObject != this.gameObject)
-				Destroy (pm.gameObject);
-			else
-				otherPortal = pm.gameObject;
-		}
+        foreach (PortalMechanism pm in pms)
+        {
+            Debug.Log(pm + "   pm: " + pm.type + "   this: " + this.type);
+            if (pm.type == this.type && pm.gameObject != this.gameObject)
+                Destroy(pm.gameObject);
+        }
     }
 
     private void Update()
@@ -37,7 +36,7 @@ public class PortalMechanism : MonoBehaviour
         if(timer>ttl)
         {
             timer = 0;
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 
@@ -45,7 +44,14 @@ public class PortalMechanism : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-//            Debug.Log("Triggered");
+            PortalMechanism[] pms = FindObjectsOfType<PortalMechanism>();
+            foreach (PortalMechanism p in pms)
+            {
+                if (p.gameObject != this.gameObject)
+                    otherPortal = p.gameObject;
+            }
+
+            //            Debug.Log("Triggered");
             player = other.gameObject;
 
             if (incomingPlayer == player)
@@ -76,6 +82,7 @@ public class PortalMechanism : MonoBehaviour
             //Debug.Log(playerrb.velocity.magnitude);
 			
 			Destroy (this.gameObject);
+            Destroy(otherPortal);
         }
     }
 
@@ -88,5 +95,6 @@ public class PortalMechanism : MonoBehaviour
 //        gameObject.SetActive(false);
 //        otherPortal.SetActive(false);
 		Destroy (this.gameObject);
+        Destroy(otherPortal);
     }
 }
