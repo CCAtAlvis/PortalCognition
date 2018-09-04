@@ -6,6 +6,10 @@
 Assets/AssetStoreTools*
 Assets/GoogleVR*
 
+Assets/GameAssets/Scenes/Level1/*
+Assets/GameAssets/Scenes/Level1.meta
+
+
 # Visual Studio cache directory
 .vs/
 

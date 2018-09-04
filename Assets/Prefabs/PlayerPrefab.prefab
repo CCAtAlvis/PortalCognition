@@ -896,7 +896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mul:
     speed: 3
-    jump: 6
+    jump: 10
   player:
     mesh: {fileID: 1307317202988442}
     rigidbody: {fileID: 54071535372953510}
