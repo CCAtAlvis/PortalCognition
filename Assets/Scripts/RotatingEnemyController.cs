@@ -18,8 +18,9 @@ public class RotatingEnemyController : MonoBehaviour
 
         if ("Player" == tag)
         {
-            PlayerMovementController PMC = collision.collider.GetComponent<PlayerMovementController>();
-            PMC.Destroy();
+            //PlayerMovementController PMC = collision.collider.GetComponent<PlayerMovementController>();
+            DestroyObject pd = collision.collider.GetComponent<DestroyObject>();
+            pd.DestroyFunction();
         }
     }
 }

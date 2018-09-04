@@ -9,6 +9,8 @@ TagManager:
   - Box
   - Potal
   - Ground
+  - Constraints
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
