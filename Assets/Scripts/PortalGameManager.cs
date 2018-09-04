@@ -30,16 +30,8 @@ public class PortalGameManager : NetworkBehaviour
 	private GameObject bulletBlue;
 	private GameObject bulletRed;
 
-	public void InitPlayer(NetworkConnection _conn, GameObject _player, GameObject _self, GameObject _other, GameObject _bullet, int _index)
+	public void InitPlayer(NetworkConnection _conn, GameObject _player,  int _index)
     {
-//        Debug.LogError("server: " + _self);
-//        Debug.LogError("server: " + _other);
-//        Debug.LogError("server: " + _bullet);
-//        NetworkInstanceId _s = _self.GetComponent<NetworkIdentity>().netId;
-//        NetworkInstanceId _o = _other.GetComponent<NetworkIdentity>().netId;
-//        NetworkInstanceId _b = _bullet.GetComponent<NetworkIdentity>().netId;
-//        Debug.LogError(_s +"   :   "+ _o + "   :   " + _b);
-//		TargetInit(_conn, _player, _s, _o, _b, _index);
 		TargetInit(_conn, _player, _index);
     }
 
@@ -48,19 +40,6 @@ public class PortalGameManager : NetworkBehaviour
         PlayerGunController pgc = player.GetComponent<PlayerGunController>();
 		pgc.InitPlayer(_index);
 	}
-
-//    [TargetRpc]
-//	private void TargetInit(NetworkConnection target, GameObject player, NetworkInstanceId _self, NetworkInstanceId _other, NetworkInstanceId _bullet, int _index)
-//    {
-//        PlayerGunController pgc = player.GetComponent<PlayerGunController>();
-//        Debug.LogError("TargetInit: " + _self + "   :   " + _other + "   :   " + _bullet);
-//		pgc.InitPlayer(_self, _other, _bullet, _index);
-//        //pgc.InitPlayer(_self, _other, _bullet);
-//        //pgc.self = _self;
-//        //pgc.other = _other;
-//        //pgc._bullet = _bullet;
-//        //pgc.Init();
-//    }
 
     private void Update()
     {

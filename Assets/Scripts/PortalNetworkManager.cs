@@ -23,19 +23,7 @@ public class PortalNetworkManager : NetworkManager
 	}
     //public Prefabs prefabs;
 
-    public GameObject portalBlue;
-	public GameObject portalRed;
-    public GameObject bulletBlue;
-    public GameObject bulletRed;
 
-    public struct NIDS
-    {
-        public NetworkInstanceId portalBlue;
-        public NetworkInstanceId portalRed;
-        public NetworkInstanceId bulletBlue;
-        public NetworkInstanceId bulletRed;
-    };
-    private NIDS nids;
 
     public PortalGameManager PGM;
     public bool startAsServer;
@@ -44,17 +32,8 @@ public class PortalNetworkManager : NetworkManager
     private NetworkConnection[] connections = new NetworkConnection[2];
     private GameObject[] players = new GameObject[2];
 
-    //public GameObject player1;
-    //public GameObject player2;
-
     private void Start()
 	{
-        nids.portalBlue = portalBlue.GetComponent<NetworkIdentity>().netId;
-        nids.bulletBlue = bulletBlue.GetComponent<NetworkIdentity>().netId;
-
-        nids.portalRed = portalRed.GetComponent<NetworkIdentity>().netId;
-        nids.bulletRed = bulletRed.GetComponent<NetworkIdentity>().netId;
-
         if (startAsServer)
         {
             PortalStartGameServer();
@@ -81,13 +60,13 @@ public class PortalNetworkManager : NetworkManager
 
         if (1 == noOfPlayer)
 		{
-            PGM.InitPlayer(conn, player, portalBlue, portalRed, bulletBlue, 1);
+            PGM.InitPlayer(conn, player, 1);
             //pgc.SetPlayer(1, portalBlue, portalRed, bulletBlue);
             //pgc.InitPlayer(nids.portalBlue, nids.portalRed, nids.bulletBlue);
         }
         else if (2 == noOfPlayer)
         {
-            PGM.InitPlayer(conn, player, portalRed, portalBlue, bulletRed, 2);
+            PGM.InitPlayer(conn, player, 2);
             //pgc.SetPlayer(1, portalRed, portalBlue, bulletRed);
             //pgc.InitPlayer(nids.portalRed, nids.portalBlue, nids.bulletRed);
         }

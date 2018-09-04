@@ -36,7 +36,7 @@ public class DestroyObject : MonoBehaviour {
             if (cs.index > this.index)
             {
                 this.index = cs.index;
-                ChangeInitialPosition(other.transform.position + (Vector3.left * 2), other.transform.rotation);
+                ChangeInitialPosition(other.transform.position, other.transform.rotation);
             }
         }
     }

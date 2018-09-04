@@ -13,7 +13,7 @@ public class singlePlayerMovement : MonoBehaviour {
     public GameObject portalbullet;
     public GameObject portalbullet2;
     private PortalBulletController pbc;
-	private GameObject portalbullet2;
+	//private GameObject portalbullet2;
 
 	// Use this for initialization
 	void Start () {
@@ -59,7 +59,7 @@ public class singlePlayerMovement : MonoBehaviour {
             pbc = portalbullet.GetComponent<PortalBulletController>();
             pbc.selfPortal = portalBlue;
             pbc.otherPortal = portalRed;
-            pbc.ResetObj();
+            //pbc.ResetObj();
         }
         if(Input.GetKey(KeyCode.E))
         {
@@ -75,7 +75,7 @@ public class singlePlayerMovement : MonoBehaviour {
             pbc = portalbullet2.GetComponent<PortalBulletController>();
             pbc.selfPortal = portalRed;
             pbc.otherPortal = portalBlue;
-            pbc.ResetObj();
+            //pbc.ResetObj();
         }
 	}
 }

@@ -133,21 +133,6 @@ public class PlayerGunController : NetworkBehaviour
     }
 
     [Command]
-    private void CmdFirePortal(Vector3 _position, Vector3 _forward)
-    {
-        FirePortal(_position, _forward);
-    }
-
-    private void FirePortal(Vector3 _position, Vector3 _forward)
-    {
-        bullet.obj.SetActive(true);
-        bullet.rigidbody.isKinematic = true;
-        bullet.obj.transform.position = _position;
-        bullet.controller.ResetObj(_forward);
-        bullet.rigidbody.isKinematic = false;
-    }
-
-    [Command]
     private void CmdGravityGun(Vector3 _position, Vector3 _forward, Vector3 _direction)
     {
         GravityGun(_position, _forward, _direction);
@@ -201,27 +186,9 @@ public class PlayerGunController : NetworkBehaviour
         isHoldingBox = false;
     }
 
-//	public void InitPlayer(NetworkInstanceId _self, NetworkInstanceId _other, NetworkInstanceId _inBullet, int _id)
-//	{
-//		Debug.LogError("in here");
-//		playerID = _id;
-//
-//		PortalMechanism[] go = FindObjectsOfType<PortalMechanism> ();
-//
-//		foreach(PortalMechanism j in go){
-//			Debug.LogError (j);
-//		}
-//
-//		self = NetworkServer.FindLocalObject(_self);
-//		other = NetworkServer.FindLocalObject(_other);
-//		//_bullet = NetworkServer.FindLocalObject(_inBullet);
-//		Debug.LogError(_self + "   :   " + _other + "   :   " + _inBullet);
-//		Debug.LogError(self + "   :   " + other + "   :   " + _bullet);
-//		//SetBullet(_bullet);
-//	}
 	public void InitPlayer(int _id)
 	{
-		Debug.LogError("in here");
+		//Debug.LogError("in here");
 		playerID = _id;
 
 		PortalMechanism[] go = FindObjectsOfType<PortalMechanism> ();
@@ -230,15 +197,4 @@ public class PlayerGunController : NetworkBehaviour
 			Debug.LogError (j);
 		}
 	}
-
-    private void SetBullet(GameObject _inCommingBullet)
-    {
-        bullet.obj = _inCommingBullet;
-        bullet.obj.transform.parent = null;
-        bullet.obj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        bullet.rigidbody = _inCommingBullet.GetComponent<Rigidbody>();
-        bullet.controller = _inCommingBullet.GetComponent<PortalBulletController>();
-        //Debug.Log(bullet.obj);
-        bullet.obj.SetActive(false);
-    }
 }
