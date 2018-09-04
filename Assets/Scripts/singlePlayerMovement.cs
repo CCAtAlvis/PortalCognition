@@ -11,6 +11,7 @@ public class singlePlayerMovement : MonoBehaviour {
     public Transform playerTransform;
     public Rigidbody rb;
     public GameObject portalbullet;
+    public GameObject portalbullet2;
     private PortalBulletController pbc;
 	private GameObject portalbullet2;
 
@@ -50,8 +51,6 @@ public class singlePlayerMovement : MonoBehaviour {
         }
         if(Input.GetKey(KeyCode.Q))
         {
-            // portalType = portalBlue;
-            // GameObject g = Instantiate(portalbullet, playerTransform.position - playerTransform.right*5, Quaternion.identity);
             portalbullet.SetActive(false);
             portalbullet.transform.position = playerTransform.position + playerTransform.forward * 2;
             portalbullet.transform.rotation = Quaternion.identity;
@@ -60,11 +59,10 @@ public class singlePlayerMovement : MonoBehaviour {
             pbc = portalbullet.GetComponent<PortalBulletController>();
             pbc.selfPortal = portalBlue;
             pbc.otherPortal = portalRed;
+            pbc.ResetObj();
         }
         if(Input.GetKey(KeyCode.E))
         {
-            //portalType = portalRed;
-            //GameObject g = Instantiate(portalbullet, playerTransform.position + playerTransform.right * 5, Quaternion.identity);
             portalbullet2.SetActive(false);
             portalbullet2.transform.position = playerTransform.position + playerTransform.forward * 2;
             Debug.Log("position");
@@ -77,6 +75,7 @@ public class singlePlayerMovement : MonoBehaviour {
             pbc = portalbullet2.GetComponent<PortalBulletController>();
             pbc.selfPortal = portalRed;
             pbc.otherPortal = portalBlue;
+            pbc.ResetObj();
         }
 	}
 }
