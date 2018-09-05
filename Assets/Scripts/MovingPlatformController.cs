@@ -10,6 +10,7 @@ public class MovingPlatformController : MonoBehaviour
         public float speed;
         public bool startOnTrigger;
         public bool teleportPlatform;
+        public bool stopAtDest;
     }
 
     public Settings setting;
@@ -52,6 +53,9 @@ public class MovingPlatformController : MonoBehaviour
                 direction = setting.end - setting.start;
                 direction = direction.normalized;
             }
+
+            if (setting.stopAtDest)
+                Destroy(this);
         }
         else
         {
