@@ -1,5 +1,4 @@
-﻿ using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 public class Level2TriggerScript : MonoBehaviour {
@@ -13,11 +12,7 @@ public class Level2TriggerScript : MonoBehaviour {
 	void Start () {
         ls = StartPortal.GetComponent<LocationScript>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
     void OnTriggerEnter(Collider other)
     {
         if("LocationTrigger" == other.gameObject.tag)
@@ -40,5 +35,9 @@ public class Level2TriggerScript : MonoBehaviour {
                 ls.destination = loc3SpawnPoint;
             }
         }
+    }
+    void OnTriggerExit()
+    {
+        ls.destination = null;
     }
 }
