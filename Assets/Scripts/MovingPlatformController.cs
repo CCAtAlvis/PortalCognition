@@ -5,6 +5,7 @@ public class MovingPlatformController : MonoBehaviour
     [System.Serializable]
     public class Settings
     {
+		[HideInInspector]
         public Vector3 start;
         public Vector3 end;
         public float speed;
