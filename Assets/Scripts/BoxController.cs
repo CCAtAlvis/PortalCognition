@@ -7,8 +7,4 @@ public class BoxController : NetworkBehaviour
     {
         Vector3 initialPosition;
     };
-
-    public void Destroy()
-    {
-    }
 }
