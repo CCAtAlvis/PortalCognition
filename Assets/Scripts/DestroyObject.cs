@@ -6,10 +6,13 @@ public class DestroyObject : MonoBehaviour {
     public Quaternion initialRotation;
     public Rigidbody rb;
     private int index;
-    CheckpointScript cs; 
+    CheckpointScript cs;
+    public PortalGameManager pgm; 
     // Use this for initialization
     void Start()
     {
+        if (tag == "Player")
+            pgm = FindObjectOfType<PortalGameManager>();
         index = 0;
         initialPosition = gameObject.transform.position;
         initialRotation = gameObject.transform.rotation;
@@ -37,6 +40,7 @@ public class DestroyObject : MonoBehaviour {
             {
                 this.index = cs.index;
                 ChangeInitialPosition(other.transform.position, other.transform.rotation);
+                pgm.checkpointsUI.text = "Checkpoint: " + index.ToString();
             }
         }
     }
@@ -44,6 +48,7 @@ public class DestroyObject : MonoBehaviour {
     {
         rb.isKinematic = true;
         gameObject.SetActive(false);
+        gameObject.transform.parent = null;
         gameObject.transform.position = initialPosition;
         gameObject.transform.rotation = initialRotation;
         rb.velocity = Vector3.zero;
