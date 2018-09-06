@@ -27,7 +27,7 @@ GameObject:
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4463629308271366
 Transform:
@@ -35,9 +35,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1057362262436888}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 150, y: 149.99997, z: 20}
+  m_LocalRotation: {x: -0.7071068, y: -0.000000029802322, z: -0.000000014901161, w: 0.70710677}
+  m_LocalPosition: {x: -45.29, y: -9.800003, z: 97.8}
+  m_LocalScale: {x: 150, y: 149.99998, z: 20}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -56,7 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 1185b738a955ae54694ef28869482c54, type: 3}
+  - {fileID: 2100000, guid: 3b2b5c904e511a64091323fc51d2f277, type: 2}
   - {fileID: 2100002, guid: 1185b738a955ae54694ef28869482c54, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -91,7 +91,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1057362262436888}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.019999998, y: 0.019999998, z: 0.043077163}
