@@ -21,10 +21,9 @@ GameObject:
   - component: {fileID: 4906138849897666}
   - component: {fileID: 33046024629436558}
   - component: {fileID: 23474423495275000}
-  - component: {fileID: 64913247657143364}
   m_Layer: 0
   m_Name: CirclePlatform
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,18 +82,4 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1100408564187854}
-  m_Mesh: {fileID: 4300000, guid: 9d3544db3527fc5409eb5799130bbda5, type: 3}
---- !u!64 &64913247657143364
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1100408564187854}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 9d3544db3527fc5409eb5799130bbda5, type: 3}
