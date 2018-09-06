@@ -5,7 +5,7 @@ public class MovingPlatformController : MonoBehaviour
     [System.Serializable]
     public class Settings
     {
-		[HideInInspector]
+        [HideInInspector]
         public Vector3 start;
         public Vector3 end;
         public float speed;
@@ -18,7 +18,6 @@ public class MovingPlatformController : MonoBehaviour
     private Vector3 direction;
     private bool movePlatform = false;
 
-    // Use this for initialization
     void Start()
     {
         setting.start = transform.position;
@@ -29,7 +28,6 @@ public class MovingPlatformController : MonoBehaviour
             movePlatform = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!movePlatform)
@@ -65,11 +63,11 @@ public class MovingPlatformController : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if ("Player" == other.tag || "Box" == other.tag)
+        if ("Player" == collision.collider.tag || "Box" == collision.collider.tag)
         {
-            other.transform.parent = transform;
+            collision.collider.transform.parent = transform;
             movePlatform = true;
         }
     }

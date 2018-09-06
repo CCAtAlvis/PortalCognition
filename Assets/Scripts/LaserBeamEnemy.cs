@@ -26,7 +26,7 @@ public class LaserBeamEnemy : MonoBehaviour
         {
             //TODO: make a script Destroy or ResetObject
             //so all Destroy functions can be accessed easily..
-            other.GetComponent<PlayerMovementController>().Destroy();
+            other.GetComponent<DestroyObject>().DestroyFunction();
         }
     }
 }

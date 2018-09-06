@@ -1,15 +1,15 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
-public class LocationScript : MonoBehaviour {
+public class LocationScript : MonoBehaviour
+{
 
     public Transform destination;
 
     void OnTriggerEnter(Collider other)
     {
-        if("Player"==other.tag && destination != null)
+        if ("Player" == other.tag && destination != null)
         {
-            Debug.Log("Playerhit");
+            //Debug.Log("Playerhit");
             other.transform.position = destination.position;
             other.transform.rotation = destination.rotation;
         }

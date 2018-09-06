@@ -111,6 +111,7 @@ public class SmoothMouseLook : MonoBehaviour
             transform.localRotation = originalRotation * yQuaternion;
         }
     }
+
     void Start()
     {
         Rigidbody rb = GetComponent<Rigidbody>();
@@ -118,6 +119,7 @@ public class SmoothMouseLook : MonoBehaviour
             rb.freezeRotation = true;
         originalRotation = transform.localRotation;
     }
+
     public static float ClampAngle(float angle, float min, float max)
     {
         angle = angle % 360;

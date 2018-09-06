@@ -1,16 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class TriggersScript : MonoBehaviour {
-
-    //public Material defaultMaterial;
+public class TriggersScript : MonoBehaviour
+{
     public int index;
-	// Use this for initialization
+
     void OnTriggerEnter(Collider other)
     {
-        if("Player" == other.tag)
-            gameObject.GetComponentInParent<MultitriggerScript>().ChildTriggered(index,gameObject);
-
+        if ("Player" == other.tag)
+            gameObject.GetComponentInParent<MultitriggerScript>().ChildTriggered(index, gameObject);
     }
 }

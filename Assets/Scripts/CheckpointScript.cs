@@ -2,5 +2,5 @@
 
 public class CheckpointScript : MonoBehaviour
 {
-     public int index;
+    public int index;
 }

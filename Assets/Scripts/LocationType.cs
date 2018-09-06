@@ -1,7 +1,6 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
-public class LocationType : MonoBehaviour {
-
+public class LocationType : MonoBehaviour
+{
     public int type;
 }

@@ -63,26 +63,26 @@ public class PlayerMovementController : NetworkBehaviour
         float temp = player.rigidbody.velocity.y;
         Vector3 velocity = Vector3.zero;
 
-		float ver = Input.GetAxis ("Vertical");
-		float hor = Input.GetAxis ("Horizontal");
+        float ver = Input.GetAxis("Vertical");
+        float hor = Input.GetAxis("Horizontal");
 
-		velocity += player.mesh.transform.forward * mul.speed * ver;
-		velocity += player.mesh.transform.right * mul.speed * hor;
+        velocity += player.mesh.transform.forward * mul.speed * ver;
+        velocity += player.mesh.transform.right * mul.speed * hor;
 
-//		if (Input.GetKey(KeyCode.W))
-//        {
-//            //playerRb.AddForce(camForward.normalized * forceMultiplier);
-//            //playerRb.AddForce(playerMesh.transform.forward * forceMultiplier);
-//            velocity = player.mesh.transform.forward * mul.speed;
-//        }
-//
-//        if (Input.GetKey(KeyCode.S))
-//            velocity = -player.mesh.transform.forward * mul.speed;
+        //if (Input.GetKey(KeyCode.W))
+        //{
+        //    playerRb.AddForce(camForward.normalized * forceMultiplier);
+        //    playerRb.AddForce(playerMesh.transform.forward * forceMultiplier);
+        //    velocity = player.mesh.transform.forward * mul.speed;
+        //}
+        //
+        //if (Input.GetKey(KeyCode.S))
+        //    velocity = -player.mesh.transform.forward * mul.speed;
 
         player.rigidbody.velocity = new Vector3(velocity.x, temp, velocity.z);
 
-//        if (Input.GetKeyDown(KeyCode.Space))
-		if(Input.GetButtonDown ("Jump"))
+        //if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Jump"))
         {
             player.rigidbody.velocity += Vector3.up * mul.jump;
             transform.parent = null;

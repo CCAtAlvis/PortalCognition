@@ -1,18 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class MultitriggerScript : MonoBehaviour {
+public class MultitriggerScript : MonoBehaviour
+{
     public GameObject[] multiTriggers = new GameObject[4];
     public Material defaultMaterial;
     public Material newMaterial;
     //public int[] order = new int[4];
     private int i;
-	// Use this for initialization
-	void Start () {
+
+    void Start()
+    {
         i = 0;
-	}
-	public void ChildTriggered(int index,GameObject g)
+    }
+
+    public void ChildTriggered(int index, GameObject g)
     {
         if (i < 4)
         {
@@ -35,29 +36,30 @@ public class MultitriggerScript : MonoBehaviour {
                 i = 0;
             }
         }
-       
-       /* if(i == index)
-        {
-            Debug.Log(i);
-            g.GetComponent<MeshRenderer>().material = newMaterial;
-            i++;
-        }
-        else
-        {
-            for(int j=i;j>=0;j--)
-            {
-                GameObject child = gameObject.transform.GetChild(j).gameObject;
-                child.GetComponent<MeshRenderer>().material = defaultMaterial;
-            }
-            i = 0;
-        }*/
+
+        /* if(i == index)
+         {
+             Debug.Log(i);
+             g.GetComponent<MeshRenderer>().material = newMaterial;
+             i++;
+         }
+         else
+         {
+             for(int j=i;j>=0;j--)
+             {
+                 GameObject child = gameObject.transform.GetChild(j).gameObject;
+                 child.GetComponent<MeshRenderer>().material = defaultMaterial;
+             }
+             i = 0;
+         }*/
     }
-	// Update is called once per frame
-	void Update () {
-		if(i==4)
+
+    void Update()
+    {
+        if (i == 4)
         {
             Debug.Log("MultiTrigger Correctly completed");
             //this.enabled = false;
         }
-	}
+    }
 }

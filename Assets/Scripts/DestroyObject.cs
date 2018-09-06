@@ -1,24 +1,29 @@
 ﻿using UnityEngine;
 
-public class DestroyObject : MonoBehaviour {
-
-    public Vector3 initialPosition;
-    public Quaternion initialRotation;
+public class DestroyObject : MonoBehaviour
+{
     public Rigidbody rb;
+    public PortalGameManager pgm;
+
+    [HideInInspector]
+    public Vector3 initialPosition;
+    [HideInInspector]
+    public Quaternion initialRotation;
+
     private int index;
-    CheckpointScript cs;
-    public PortalGameManager pgm; 
-    // Use this for initialization
+    private CheckpointScript cs;
+
     void Start()
     {
         if (tag == "Player")
             pgm = FindObjectOfType<PortalGameManager>();
+
         index = 0;
         initialPosition = gameObject.transform.position;
         initialRotation = gameObject.transform.rotation;
     }
 
-    public void ChangeInitialPosition(Vector3 newPosition,Quaternion newRotation)
+    public void ChangeInitialPosition(Vector3 newPosition, Quaternion newRotation)
     {
         initialPosition = newPosition;
         initialRotation = newRotation;
@@ -26,15 +31,15 @@ public class DestroyObject : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Triggered");
+        //Debug.Log("Triggered");
         if ("Constraints" == other.tag)
         {
             Debug.Log("hit trigger");
             DestroyFunction();
         }
-        if("Checkpoint" == other.tag && "Player" == gameObject.tag)
+        if ("Checkpoint" == other.tag && "Player" == gameObject.tag)
         {
-            Debug.Log("Checkpoint triggered by player");
+            //Debug.Log("Checkpoint triggered by player");
             cs = other.gameObject.GetComponent<CheckpointScript>();
             if (cs.index > this.index)
             {
@@ -44,6 +49,7 @@ public class DestroyObject : MonoBehaviour {
             }
         }
     }
+
     public void DestroyFunction()
     {
         rb.isKinematic = true;

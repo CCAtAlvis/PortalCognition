@@ -41,22 +41,23 @@ public class PlayerGunController : NetworkBehaviour
     private GameObject spawnedBullet;
 
 
-	public GameObject blue;
-	public GameObject red;
+    public GameObject blue;
+    public GameObject red;
 
     private int playerID;
-	private Rigidbody rb;
+    private Rigidbody rb;
 
-	private void Start() {
-		rb = GetComponent<Rigidbody> ();
-	}
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void Update()
     {
         if (!isLocalPlayer)
             return;
 
-        //        if (Input.GetMouseButtonDown(0))
+        //if (Input.GetMouseButtonDown(0))
         if (Input.GetButtonDown("Portal"))
         {
             Debug.Log("firing portal");
@@ -65,11 +66,11 @@ public class PlayerGunController : NetworkBehaviour
                 //TODO: convert this to proper Server-Client network code
                 //FirePortal(player.spawnPoint.position, player.camera.transform.forward);
                 //CmdFirePortal(player.spawnPoint.position, player.camera.transform.forward);
-				CmdPortal(player.spawnPoint.position, player.camera.transform.forward + rb.velocity, playerID);
+                CmdPortal(player.spawnPoint.position, player.camera.transform.forward + rb.velocity, playerID);
             }
         }
 
-        //        if (Input.GetMouseButtonDown(1))
+        //if (Input.GetMouseButtonDown(1))
         if (Input.GetButtonDown("GravityGun"))
         {
             Debug.Log("gravity gun");
@@ -93,43 +94,49 @@ public class PlayerGunController : NetworkBehaviour
     }
 
     [Command]
-	private void CmdPortal(Vector3 _position, Vector3 _forward, int _id)
+    private void CmdPortal(Vector3 _position, Vector3 _forward, int _id)
     {
         if (spawnedBullet != null)
             Destroy(spawnedBullet);
 
         GameObject bul = Instantiate(bulletPrefab);
         bul.transform.position = _position;
-		NetworkServer.Spawn(bul);
+        NetworkServer.Spawn(bul);
 
-		PortalBulletController pbc = bul.GetComponent<PortalBulletController>();
+        PortalBulletController pbc = bul.GetComponent<PortalBulletController>();
 
-		if (1 == _id) {
-			pbc.selfPortal = blue;
-			pbc.otherPortal = red;
-		} else {
-			pbc.selfPortal = red;
-			pbc.otherPortal = blue;
-		}
+        if (1 == _id)
+        {
+            pbc.selfPortal = blue;
+            pbc.otherPortal = red;
+        }
+        else
+        {
+            pbc.selfPortal = red;
+            pbc.otherPortal = blue;
+        }
 
-		pbc.ResetObj(_forward);
-		RpcPortal(bul, _forward, _id);
+        pbc.ResetObj(_forward);
+        RpcPortal(bul, _forward, _id);
         spawnedBullet = bul;
     }
 
     [ClientRpc]
-	private void RpcPortal(GameObject bul, Vector3 _forward, int _id)
+    private void RpcPortal(GameObject bul, Vector3 _forward, int _id)
     {
         PortalBulletController pbc = bul.GetComponent<PortalBulletController>();
         pbc.ResetObj(_forward);
 
-		if (1 == _id) {
-			pbc.selfPortal = blue;
-			pbc.otherPortal = red;
-		} else {
-			pbc.selfPortal = red;
-			pbc.otherPortal = blue;
-		}
+        if (1 == _id)
+        {
+            pbc.selfPortal = blue;
+            pbc.otherPortal = red;
+        }
+        else
+        {
+            pbc.selfPortal = red;
+            pbc.otherPortal = blue;
+        }
     }
 
     [Command]
@@ -186,15 +193,16 @@ public class PlayerGunController : NetworkBehaviour
         isHoldingBox = false;
     }
 
-	public void InitPlayer(int _id)
-	{
-		//Debug.LogError("in here");
-		playerID = _id;
+    public void InitPlayer(int _id)
+    {
+        //Debug.LogError("in here");
+        playerID = _id;
 
-		PortalMechanism[] go = FindObjectsOfType<PortalMechanism> ();
+        PortalMechanism[] go = FindObjectsOfType<PortalMechanism>();
 
-		foreach(PortalMechanism j in go){
-			Debug.LogError (j);
-		}
-	}
+        foreach (PortalMechanism j in go)
+        {
+            Debug.LogError(j);
+        }
+    }
 }

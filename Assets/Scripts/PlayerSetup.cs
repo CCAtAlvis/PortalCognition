@@ -11,7 +11,7 @@ public class PlayerSetup : NetworkBehaviour
     {
         StartUp();
     }
-    
+
     public void StartUp()
     {
         if (!isLocalPlayer)

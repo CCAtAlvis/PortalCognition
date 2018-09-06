@@ -7,7 +7,7 @@ public class PortalMechanism : MonoBehaviour
     [HideInInspector]
     public GameObject incomingPlayer;
 
-	public int type;
+    public int type;
 
     private GameObject player;
     private Rigidbody playerrb;
@@ -32,8 +32,8 @@ public class PortalMechanism : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
-        
-        if(timer>ttl)
+
+        if (timer > ttl)
         {
             timer = 0;
             Destroy(gameObject);
@@ -51,7 +51,7 @@ public class PortalMechanism : MonoBehaviour
                     otherPortal = p.gameObject;
             }
 
-            //            Debug.Log("Triggered");
+            //Debug.Log("Triggered");
             player = other.gameObject;
 
             if (incomingPlayer == player)
@@ -60,28 +60,28 @@ public class PortalMechanism : MonoBehaviour
                 return;
             }
 
-			if (otherPortal == null || otherPortal.activeSelf == false)
+            if (otherPortal == null || otherPortal.activeSelf == false)
                 return;
 
             PortalMechanism pm = otherPortal.GetComponent<PortalMechanism>();
             pm.incomingPlayer = player;
             playerrb = player.GetComponent<Rigidbody>();
-            
-			//player.SetActive(false);
+
+            //player.SetActive(false);
             Vector3 vel = playerrb.velocity;
             playerrb.isKinematic = true;
             float velMagnitute = vel.magnitude;
-            
-			//Debug.Log(velMagnitute);
+
+            //Debug.Log(velMagnitute);
             player.transform.position = otherPortal.transform.position;
             //Debug.Log(player.transform.position);
             //player.transform.forward = otherPortal.transform.forward;
-			//player.SetActive(true);
+            //player.SetActive(true);
             playerrb.isKinematic = false;
             playerrb.velocity = otherPortal.transform.forward * velMagnitute;
             //Debug.Log(playerrb.velocity.magnitude);
-			
-			Destroy (this.gameObject);
+
+            Destroy(this.gameObject);
             Destroy(otherPortal);
         }
     }
@@ -92,9 +92,9 @@ public class PortalMechanism : MonoBehaviour
             return;
 
         incomingPlayer = null;
-//        gameObject.SetActive(false);
-//        otherPortal.SetActive(false);
-		Destroy (this.gameObject);
+        //gameObject.SetActive(false);
+        //otherPortal.SetActive(false);
+        Destroy(this.gameObject);
         Destroy(otherPortal);
     }
 }

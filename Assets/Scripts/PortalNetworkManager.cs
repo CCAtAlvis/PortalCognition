@@ -4,23 +4,23 @@ using UnityEngine.SceneManagement;
 
 public class PortalNetworkManager : NetworkManager
 {
-	[System.Serializable]
-	public class Display
-	{
-		public GameObject startGameButton;
-		public GameObject stopGameButton;
-		public GameObject restartGameButton;
-		public GameObject canvas;
-	}
-	public Display display;
+    [System.Serializable]
+    public class Display
+    {
+        public GameObject startGameButton;
+        public GameObject stopGameButton;
+        public GameObject restartGameButton;
+        public GameObject canvas;
+    }
+    public Display display;
 
-	[System.Serializable]
-	public class Prefabs
-	{
+    [System.Serializable]
+    public class Prefabs
+    {
         public GameObject bullet;
-		public GameObject blue;
-		public GameObject red;
-	}
+        public GameObject blue;
+        public GameObject red;
+    }
     //public Prefabs prefabs;
 
 
@@ -33,11 +33,11 @@ public class PortalNetworkManager : NetworkManager
     private GameObject[] players = new GameObject[2];
 
     private void Start()
-	{
+    {
         if (startAsServer)
         {
             PortalStartGameServer();
-			display.canvas.SetActive(true);
+            display.canvas.SetActive(true);
         }
     }
 
@@ -58,13 +58,13 @@ public class PortalNetworkManager : NetworkManager
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
         NetworkServer.Spawn(player);
 
-        if (1 == noOfPlayer)
-		{
+        if (1 == noOfPlayer%2)
+        {
             PGM.InitPlayer(conn, player, 1);
             //pgc.SetPlayer(1, portalBlue, portalRed, bulletBlue);
             //pgc.InitPlayer(nids.portalBlue, nids.portalRed, nids.bulletBlue);
         }
-        else if (2 == noOfPlayer)
+        else if (0 == noOfPlayer%2)
         {
             PGM.InitPlayer(conn, player, 2);
             //pgc.SetPlayer(1, portalRed, portalBlue, bulletRed);
@@ -96,8 +96,8 @@ public class PortalNetworkManager : NetworkManager
 
     public override void OnStopServer()
     {
-		if(!startAsServer)
-        	SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (!startAsServer)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void PortalStartGameServer()
@@ -105,15 +105,15 @@ public class PortalNetworkManager : NetworkManager
         //Debug.Log("Starting Server...");
         StartServer();
         Time.timeScale = 1;
-		display.startGameButton.SetActive(false);
-		display.stopGameButton.SetActive(true);
-		display.restartGameButton.SetActive(true);
+        display.startGameButton.SetActive(false);
+        display.stopGameButton.SetActive(true);
+        display.restartGameButton.SetActive(true);
     }
 
     public void PortalRestartGameServer()
     {
         //Debug.Log("Initiating restart sequence...");
-		PortalStopGameServer ();
+        PortalStopGameServer();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -122,7 +122,7 @@ public class PortalNetworkManager : NetworkManager
         //Debug.Log("Stoping game server...");
         StopServer();
         PGM.StopGame();
-	}
+    }
 
     public void PortalStartGameClient()
     {

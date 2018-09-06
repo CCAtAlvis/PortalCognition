@@ -16,30 +16,31 @@ public class PortalGameManager : NetworkBehaviour
     private float displayTimer; /*Time shown to event heads*/
     private int timer;
 
-	[System.Serializable]
-	public class Prefabs
-	{
-		public GameObject bullet;
-		public GameObject blue;
-		public GameObject red;
-	}
-	public Prefabs prefabs;
-
-	private GameObject portalBlue;
-	private GameObject portalRed;
-	private GameObject bulletBlue;
-	private GameObject bulletRed;
-
-	public void InitPlayer(NetworkConnection _conn, GameObject _player,  int _index)
+    [System.Serializable]
+    public class Prefabs
     {
-		TargetInit(_conn, _player, _index);
+        public GameObject bullet;
+        public GameObject blue;
+        public GameObject red;
+    }
+    public Prefabs prefabs;
+
+    private GameObject portalBlue;
+    private GameObject portalRed;
+    private GameObject bulletBlue;
+    private GameObject bulletRed;
+
+    public void InitPlayer(NetworkConnection _conn, GameObject _player, int _index)
+    {
+        TargetInit(_conn, _player, _index);
     }
 
-	[TargetRpc]
-	private void TargetInit (NetworkConnection target, GameObject player, int _index) {
+    [TargetRpc]
+    private void TargetInit(NetworkConnection target, GameObject player, int _index)
+    {
         PlayerGunController pgc = player.GetComponent<PlayerGunController>();
-		pgc.InitPlayer(_index);
-	}
+        pgc.InitPlayer(_index);
+    }
 
     private void Update()
     {

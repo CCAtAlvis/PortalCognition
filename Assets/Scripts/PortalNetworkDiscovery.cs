@@ -13,7 +13,7 @@ public class PortalNetworkDiscovery : NetworkDiscovery
         startAsServer = pnm.startAsServer;
         Initialize();
 
-        if(startAsServer)
+        if (startAsServer)
             StartAsServer();
         else
             StartAsClient();

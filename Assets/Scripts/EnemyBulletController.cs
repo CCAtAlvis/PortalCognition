@@ -13,7 +13,7 @@ public class EnemyBulletController : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(forward);
+        //Debug.Log(forward);
         rg.velocity = forward * speedMultiplier;
     }
 
@@ -24,11 +24,6 @@ public class EnemyBulletController : MonoBehaviour
             Destroy(this.gameObject);
     }
 
-    //private void FixedUpdate()
-    //{
-    //    rg.AddForce(forward, ForceMode.VelocityChange);
-    //}
-
     private void OnTriggerEnter(Collider other)
     {
         if ("Player" == other.tag)
@@ -38,9 +33,5 @@ public class EnemyBulletController : MonoBehaviour
         }
 
         Destroy(this.gameObject);
-    }
-
-    public void Destroy()
-    {
     }
 }

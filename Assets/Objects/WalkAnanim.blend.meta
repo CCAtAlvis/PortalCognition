@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: c4b2d10c59288014f960b64a2c720086
-timeCreated: 1533826398
+guid: c9affb20234dedf4fb2d2b39050c6fad
+timeCreated: 1536262130
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -17,17 +17,17 @@ ModelImporter:
     100018: palm_03_R
     100020: palm_04_L
     100022: palm_04_R
-    100024: //RootNode
-    100026: shin_L
-    100028: shin_R
-    100030: shoulder_L
-    100032: shoulder_R
-    100034: Sphere_002
-    100036: spine
-    100038: thigh_L
-    100040: thigh_R
-    100042: upper_arm_L
-    100044: upper_arm_R
+    100024: shin_L
+    100026: shin_R
+    100028: shoulder_L
+    100030: shoulder_R
+    100032: Sphere_002
+    100034: spine
+    100036: thigh_L
+    100038: thigh_R
+    100040: upper_arm_L
+    100042: upper_arm_R
+    100044: //RootNode
     400000: chest
     400002: forearm_L
     400004: forearm_R
@@ -40,17 +40,17 @@ ModelImporter:
     400018: palm_03_R
     400020: palm_04_L
     400022: palm_04_R
-    400024: //RootNode
-    400026: shin_L
-    400028: shin_R
-    400030: shoulder_L
-    400032: shoulder_R
-    400034: Sphere_002
-    400036: spine
-    400038: thigh_L
-    400040: thigh_R
-    400042: upper_arm_L
-    400044: upper_arm_R
+    400024: shin_L
+    400026: shin_R
+    400028: shoulder_L
+    400030: shoulder_R
+    400032: Sphere_002
+    400034: spine
+    400036: thigh_L
+    400038: thigh_R
+    400040: upper_arm_L
+    400042: upper_arm_R
+    400044: //RootNode
     2100000: Material_002
     2100002: Material_004
     2100004: Material_006
@@ -58,34 +58,10 @@ ModelImporter:
     2100008: Material_005
     4300000: Sphere_002
     7400000: Default Take
+    7400002: metarigAction
     9500000: //RootNode
     13700000: Sphere_002
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material_002
-    second: {fileID: 2100000, guid: 1027eac46fd11a24a8b14368c7be43f4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material_003
-    second: {fileID: 2100000, guid: d17251102a93da446ad28179784a534c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material_004
-    second: {fileID: 2100000, guid: 5ae4ddf206d3969449a73737e115619e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material_005
-    second: {fileID: 2100000, guid: 5978c0a8e89cc5b45a88aaff1d6df5b7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material_006
-    second: {fileID: 2100000, guid: 552fb9cca2a77da4dad59549b632850e, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -104,14 +80,70 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: 0
+      lastFrame: 22
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: metarigAction
+      takeName: metarigAction
+      firstFrame: 0
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -156,7 +188,7 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
