@@ -11,6 +11,8 @@ TagManager:
   - Ground
   - Constraints
   - Checkpoint
+  - LocationTrigger
+  - Location
   layers:
   - Default
   - TransparentFX
