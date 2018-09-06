@@ -7,6 +7,7 @@ public class LocationScript : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("triggered");
         if("Player"==other.tag && destination != null)
         {
             Debug.Log("Playerhit");

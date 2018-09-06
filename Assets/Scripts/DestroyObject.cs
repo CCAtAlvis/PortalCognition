@@ -26,7 +26,7 @@ public class DestroyObject : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Triggered");
+        //Debug.Log("Triggered");
         if ("Constraints" == other.tag)
         {
             Debug.Log("hit trigger");
