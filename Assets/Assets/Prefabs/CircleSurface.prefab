@@ -21,12 +21,13 @@ GameObject:
   - component: {fileID: 4497937029079404}
   - component: {fileID: 33861991721214914}
   - component: {fileID: 23291486886974998}
+  - component: {fileID: 64928524464138596}
   m_Layer: 0
   m_Name: CircleSurface
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4497937029079404
 Transform:
@@ -34,9 +35,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1219218568086780}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 231.6, y: 0, z: 0}
-  m_LocalScale: {x: 3000, y: 3000, z: 10}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 0, y: 0, z: 644}
+  m_LocalScale: {x: 2000, y: 2999.999, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -56,7 +57,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 1a20b056652df9e44bee9a27efc5063d, type: 2}
-  - {fileID: 2100000, guid: 03c2e3b8d1c8bea49baefad6987cba03, type: 2}
+  - {fileID: 2100000, guid: 1a20b056652df9e44bee9a27efc5063d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,4 +83,18 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1219218568086780}
+  m_Mesh: {fileID: 4300000, guid: 9d3544db3527fc5409eb5799130bbda5, type: 3}
+--- !u!64 &64928524464138596
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1219218568086780}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 9d3544db3527fc5409eb5799130bbda5, type: 3}

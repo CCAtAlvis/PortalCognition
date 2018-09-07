@@ -24,6 +24,9 @@ public class MultiTrigger : MonoBehaviour
         //    return;
 
         activatedTriggers--;
+        if (activatedTriggers < 0)
+            activatedTriggers = 0;
+
         CheckTriggerCount();
     }
 
@@ -32,7 +35,7 @@ public class MultiTrigger : MonoBehaviour
         Debug.Log(activatedTriggers + " : " + noOfTriggers);
         if (activatedTriggers == noOfTriggers && firstTime)
         {
-            Debug.Log("in here");
+            Debug.LogError("in here");
             //RpcSetTrigger(false);
             triggerObject.SetActive(false);
             firstTime = false;

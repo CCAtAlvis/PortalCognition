@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4620172391663968}
   - component: {fileID: 33158850320053278}
   - component: {fileID: 23420722043685806}
+  - component: {fileID: 64616073657562740}
   m_Layer: 0
   m_Name: LaunchPad
   m_TagString: Untagged
@@ -82,4 +83,18 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1372741376758218}
+  m_Mesh: {fileID: 4300000, guid: 11470896bc799b440a48debac5950605, type: 3}
+--- !u!64 &64616073657562740
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1372741376758218}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 11470896bc799b440a48debac5950605, type: 3}
